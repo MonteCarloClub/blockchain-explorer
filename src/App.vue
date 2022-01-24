@@ -1,13 +1,20 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
+  <div>
+    <router-link to="/">home</router-link>|
+    <router-link to="/hello">hello</router-link>
+  </div>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div>{{ count }}</div>
+  <router-view></router-view>
 </template>
+
+<script setup lang="ts">
+import { useStore } from "@/store";
+import { computed } from 'vue'
+
+const store = useStore();
+const count = computed(() => store.state.count)
+</script>
 
 <style>
 #app {
