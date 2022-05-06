@@ -5,8 +5,16 @@ const router = createRouter({
     history : createWebHistory(),
     routes: [
         {
-            path: '/hello',
-            component: () => import("@/components/Helloworld.vue")
+            path: '/',
+            component: () => import("@/pages/Home/Index.vue")
+        },
+        {
+            path: '/transactions',
+            component: () => import("@/pages/Transactions/Index.vue")
+        },
+        {
+            path: '/blocks',
+            component: () => import("@/pages/Blocks/Index.vue")
         }
     ]
 })

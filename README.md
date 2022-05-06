@@ -1,18 +1,40 @@
-# Vue 3 + Typescript + Vite
+# KChain
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+什么是区块链浏览器，参考：[Etherscan](https://cn.etherscan.com/)
 
-## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
-## Type Support For `.vue` Imports in TS
+## 需求
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+### 展示性需求
 
-## run
+- [ ] 区块展示
+    - [ ] 最新的一组区块
+    - [ ] 区块的详细信息
+
+- [ ] 交易展示
+    - [ ] 最新的一批交易
+    - [ ] 查看某个地址的交易列表
+    - [ ] 展示某条交易的详细信息
+
+
+
+## 技术方案
+
+### 技术选型
+
+基础框架：Vue3 + Typescript
+
+基础 UI：[Ant Design](https://antdv.com/components/overview) `v3.2.3`
+
+包管理：`pnpm`，没有的话执行 `npm install -g pnpm` 安装一下
 
 ``` bash
-$ pnpm install
-$ pnpm run dev
+$ pnpm install  # 安装依赖
+$ pnpm run dev  # 启动
 ```
+
+### 方案
+
+展示性需求不考虑用户，不包含注册登录功能，也就没有请求鉴权
+
