@@ -1,27 +1,11 @@
 import axios from 'axios';
 import { message as $message } from 'ant-design-vue';
 import type { AxiosRequestConfig } from 'axios';
+import { UNKNOWN_ERROR_MSG, REQUEST_BASE_URL } from "@/common/constants";
 
-export interface RequestOptions {
-    /** 书否直接返回 Data */
-    isGetDataDirectly?: boolean
-    /** 请求成功是提示信息 */
-    successMsg?: string;
-    /** 请求失败是提示信息 */
-    errorMsg?: string;
-}
-
-export type Response<T = any> = {
-    code: number;
-    message: string;
-    data: T;
-};
-
-export type BaseResponse<T = any> = Promise<Response<T>>;
-
-
+// 创建 axios 实例
 const service = axios.create({
-    baseURL: '/api/',
+    baseURL: REQUEST_BASE_URL,
     timeout: 6000,
 });
 
@@ -35,8 +19,6 @@ service.interceptors.request.use(
     },
 );
 
-const UNKNOWN_ERROR = '未知错误，请重试';
-
 service.interceptors.response.use(
     (response) => {
         const res = response.data;
@@ -44,27 +26,41 @@ service.interceptors.response.use(
     },
     (error) => {
         // 处理 422 或者 500 的错误异常提示
-        const errMsg = error?.response?.data?.message ?? UNKNOWN_ERROR;
+        const errMsg = error?.response?.data?.message ?? UNKNOWN_ERROR_MSG;
         $message.error(errMsg);
         error.message = errMsg;
         return Promise.reject(error);
     },
 );
 
-export const request = async <T = any>(
+export interface RequestOptions {
+    /** 请求成功是提示信息 */
+    successMsg?: string;
+    /** 请求失败是提示信息 */
+    errorMsg?: string;
+}
+
+// 与后端约定好自定义的 Response 结构
+export type Response<T = any> = {
+    code: number;
+    message: string;
+    data: T;
+};
+
+export const request = async<T>(
     config: AxiosRequestConfig,
     options: RequestOptions = {},
-): Promise<T> => {
+): Promise<Response<T>> => {
     try {
-        const res = await service.request(config);
+        // 设置这里的 request 返回的数据格式为 Response<T>
+        const res = await service.request<any, Promise<Response<T>>>(config);
 
-        // 默认直接返回数据
-        const { successMsg, errorMsg, isGetDataDirectly = true } = options;
-        // 弹窗提示
+        // 弹窗提示消息
+        const { successMsg, errorMsg } = options;
         successMsg && $message.success(successMsg);
         errorMsg && $message.error(errorMsg);
 
-        return isGetDataDirectly ? res.data : res;
+        return res;
     } catch (error: any) {
         return Promise.reject(error);
     }

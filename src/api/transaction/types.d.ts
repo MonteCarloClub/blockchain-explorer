@@ -13,7 +13,7 @@ declare namespace API {
         id: string;
         from: string;
         to: string;
-    };
+    }[];
 
     /** 交易详细信息参数 */
     type TransactionDetailParams = {

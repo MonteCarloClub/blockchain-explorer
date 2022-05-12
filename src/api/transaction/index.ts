@@ -1,4 +1,3 @@
-import type { BaseResponse } from '@/utils/request';
 import { request } from '@/utils/request';
 
 /**
@@ -7,7 +6,7 @@ import { request } from '@/utils/request';
  * @returns 交易详细信息
  */
  export function list(params: API.TransactionListParams) {
-    return request<BaseResponse<API.TransactionList>>(
+    return request<API.TransactionList>(
         {
             url: '/transactions',
             method: 'get',
@@ -22,7 +21,7 @@ import { request } from '@/utils/request';
  * @returns 交易详细信息
  */
 export function detail(data: API.TransactionDetailParams) {
-    return request<BaseResponse<API.TransactionDetail>>(
+    return request<API.TransactionDetail>(
         {
             url: '/transaction/detail',
             method: 'post',

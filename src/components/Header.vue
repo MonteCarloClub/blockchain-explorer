@@ -38,7 +38,7 @@ const searchkey = ref<string>('');
 }
 
 .header> :nth-child(3) {
-    flex-basis: 200px;
+    flex-shrink: 0;
 }
 
 .nav>a {
