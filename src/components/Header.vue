@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from "@/components/Logo.vue";
+import Nav from "@/components/Nav.vue";
 import { ref } from 'vue'
 
 const searchkey = ref<string>('');
@@ -10,22 +11,22 @@ const searchkey = ref<string>('');
         <div class="logo">
             <Logo></Logo>
         </div>
-        <div class="search-box">
-            <a-input v-model:value="searchkey" :bordered="false" placeholder="搜索 Address / Tx hash / Block" />
+        <div>
+            <div class="group">
+                <a-input v-model:value="searchkey" :bordered="false" 
+                    placeholder="搜索 Address / Tx hash / Block" />
+                <span class="bar"></span>
+            </div>
         </div>
-        <div class="nav">
-            <router-link to="/">主页</router-link>
-            <router-link to="/transactions">交易</router-link>
-            <router-link to="/blocks">区块</router-link>
-        </div>
+        <Nav></Nav>
     </div>
 </template>
 
 <style scoped>
 .header {
-    text-align: center;
-    height: 66px;
+    line-height: 64px;
     display: flex;
+    margin: 0 92px;
     align-items: center;
 }
 
@@ -41,7 +42,37 @@ const searchkey = ref<string>('');
     flex-shrink: 0;
 }
 
-.nav>a {
-    padding: 0 20px;
+.group {
+    line-height: 48px;
+    max-width: 360px;
+    position: relative;
+}
+
+.group input {
+    padding-left: 0;
+}
+
+.bar {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.bar:before {
+    left: 0%;
+    width: 0;
+    bottom: 1px;
+    content: '';
+    height: 2px;
+    position: absolute;
+    background: #646464;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus~.bar:before {
+    width: 100%;
 }
 </style>

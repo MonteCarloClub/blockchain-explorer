@@ -29,9 +29,13 @@ onMounted(() => {
         canvas.height = props.height;
         var cool = ParticleText(canvas, {
             text: props.text,
+            color: "#000000",
+            fontSize: 62,
             radius: 50,
+            textX: 200,
+            textY: 200,
             size: 2,
-            color: "#000000"
+            gap: 3,
         })
         cool.init()
     }
