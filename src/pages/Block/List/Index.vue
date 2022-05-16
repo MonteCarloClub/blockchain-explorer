@@ -9,14 +9,11 @@
         <div>
             <a-table :columns="columns" :data-source="data" size="middle" :pagination="{ position: ['bottomCenter'] }">
                 <template #bodyCell="{ column, text }">
-                    <template v-if="column.dataIndex === 'hash'">
-                        <a>{{ text }}</a>
-                    </template>
                     <template v-if="column.dataIndex === 'id'">
-                        <a>{{ text }}</a>
+                        <router-link :to="'/block/' + text">{{ text }}</router-link>
                     </template>
                     <template v-if="column.dataIndex === 'miner'">
-                        <a>{{ text }}</a>
+                        <router-link :to="'/address/' + text">{{ text }}</router-link>
                     </template>
                 </template>
             </a-table>

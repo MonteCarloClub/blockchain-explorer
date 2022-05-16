@@ -10,10 +10,10 @@
             <a-table :columns="columns" :data-source="data" size="middle" :pagination="{ position: ['bottomCenter'] }">
                 <template #bodyCell="{ column, text }">
                     <template v-if="column.dataIndex === 'hash'">
-                        <a>{{ text }}</a>
+                        <router-link :to="'/transaction/' + text">{{ text }}</router-link>
                     </template>
                     <template v-if="column.dataIndex === 'block_id'">
-                        <a>{{ text }}</a>
+                        <router-link :to="'/block/' + text">{{ text }}</router-link>
                     </template>
                     <template v-if="column.dataIndex === 'to_icon'">
                         <a-space>
@@ -21,7 +21,7 @@
                         </a-space>
                     </template>
                     <template v-if="column.dataIndex === 'sender' || column.dataIndex === 'recipient'">
-                        <a>{{ text }}</a>
+                        <router-link :to="'/address/' + text">{{ text }}</router-link>
                     </template>
                 </template>
             </a-table>

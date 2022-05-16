@@ -11,11 +11,26 @@ const router = createRouter({
         },
         {
             path: '/transactions',
-            component: () => import("@/pages/Transactions/Index.vue")
+            component: () => import("@/pages/Transaction/List/Index.vue")
         },
         {
             path: '/blocks',
-            component: () => import("@/pages/Blocks/Index.vue")
+            component: () => import("@/pages/Block/List/Index.vue")
+        },
+        {
+            path: '/transaction/:hash',
+            component: () => import("@/pages/Transaction/Detail/Index.vue"),
+            props: true
+        },
+        {
+            path: '/block/:height',
+            component: () => import("@/pages/Block/Detail/Index.vue"),
+            props: true
+        },
+        {
+            path: '/address/:address',
+            component: () => import("@/pages/Address/Index.vue"),
+            props: true
         }
     ]
 })
