@@ -2,7 +2,8 @@ import type { App } from 'vue'
 import { createWebHistory, createRouter } from "vue-router";
 
 const router = createRouter({
-    history : createWebHistory(),
+    // it follows the base URL you set in your vite.config
+    history : createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',

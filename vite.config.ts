@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
-/** https://vitejs.dev/config/ */ 
+/** https://vitejs.dev/config/ */
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   // 打包后的根路径
-  base: "/",
+  base: "/be/",
   // 开发时的代理
   server: {
     proxy: {
@@ -22,5 +22,16 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, 'ethereum')
       },
     }
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+          'primary-color': '#000000',
+          'link-color': '#0057a8' // link color
+        },
+        javascriptEnabled: true,
+      },
+    }
+  },
 })

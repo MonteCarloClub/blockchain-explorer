@@ -30,7 +30,7 @@ import Background from "./background/Index.vue";
 }
 
 .left {
-    padding-top: 180px;
+    padding-top: 140px;
     width: 500px;
 }
 
