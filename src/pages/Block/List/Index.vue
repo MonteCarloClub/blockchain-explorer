@@ -45,7 +45,7 @@ export default defineComponent({
 <style scoped>
 .container {
     /* background-color: #fafafa; */
-    padding: 0 92px;
+    padding: 0 var(--margin-lr, 92px);
 }
 
 .desc {

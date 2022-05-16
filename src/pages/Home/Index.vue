@@ -29,11 +29,11 @@ const intro = "\
 
 <style scoped>
 .page {
-    padding: 0 92px;
+    padding: 0 var(--margin-lr, 92px);
 }
 
 .left {
-    padding-top: 140px;
+    padding: 140px 0;
     width: 500px;
 }
 

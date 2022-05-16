@@ -28,7 +28,7 @@ export default defineConfig({
       less: {
         modifyVars: {
           'primary-color': '#000000',
-          'link-color': '#0057a8' // link color
+          'link-color': '#0057a8'
         },
         javascriptEnabled: true,
       },

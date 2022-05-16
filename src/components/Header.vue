@@ -26,7 +26,7 @@ const searchkey = ref<string>('');
 .header {
     line-height: 64px;
     display: flex;
-    margin: 0 92px;
+    margin: 0 var(--margin-lr, 92px);
     align-items: center;
 }
 
