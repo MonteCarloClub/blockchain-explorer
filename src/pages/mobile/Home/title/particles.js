@@ -1,5 +1,5 @@
 export function ParticleText(canvas, config) {
-    const { text, radius, color, size, gap, textX, textY, fontSize } = config;
+    const { text, radius, color, size, gap, textX, textY, fontSize, speed } = config;
     const ctx = canvas.getContext("2d");
     const WIDTH = canvas.width;
     const HEIGHT = canvas.height;
@@ -20,12 +20,12 @@ export function ParticleText(canvas, config) {
         this.y = 0;
         // 初始速度
         this.vx = 0;
-        this.vy = 10 + (Math.random()) * 10;
+        this.vy = speed + (Math.random()) * speed;
         // 初始加速度
         this.accX = 0;
         this.accY = 0;
         // 摩擦，速度的保留比例
-        this.friction = Math.random() * 0.05 + 0.92;
+        this.friction = Math.random() * 0.05 + 0.90;
         this.color = color;
         // 激活时间
         this.activeTime = at;

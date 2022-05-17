@@ -45,14 +45,6 @@ h2 {
     font-size: 48px;
 }
 
-.demo-links {
-    width: 320px;
-    margin: auto;
-    display: flex;
-    gap: 12px;
-    flex-direction: column;
-}
-
 .background {
     z-index: -1;
     position: absolute;

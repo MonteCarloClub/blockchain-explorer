@@ -7,9 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-
-const props = defineProps({
+defineProps({
     placeholder: {
         type: String,
         default: '请在此输入'

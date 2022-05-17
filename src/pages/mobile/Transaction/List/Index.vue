@@ -6,7 +6,7 @@
                 <a-button type="primary">刷新</a-button>
             </div>
         </div>
-        <div class="table-card">
+        <div>
             <a-table :columns="columns" :data-source="data" size="middle" :pagination="{ position: ['bottomCenter'] }">
                 <template #bodyCell="{ column, text }">
                     <template v-if="column.dataIndex === 'hash'">
@@ -82,6 +82,4 @@ export default defineComponent({
 .desc .buttons {
     flex-grow: 0;
 }
-
-.table-card {}
 </style>
