@@ -1,6 +1,6 @@
 <template>
   <PC v-if="isPC"></PC>
-  <Mobile></Mobile>
+  <Mobile v-else></Mobile>
 </template>
 
 <script setup lang="ts">

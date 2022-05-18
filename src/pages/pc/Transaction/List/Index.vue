@@ -3,7 +3,7 @@
         <div class="desc">
             <div class="title">交易列表</div>
             <div class="buttons">
-                <a-button type="primary">刷新</a-button>
+                <a-button type="primary" @click="refresh">刷新</a-button>
             </div>
         </div>
         <div>
@@ -30,36 +30,24 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import { ArrowRightOutlined } from '@ant-design/icons-vue';
-// import { list } from "@/api/transaction";
+import { useTransactionList } from "@/composition/useMock";
 import { columns } from "./columns";
-import txs from '@/mock/transactions.json'
+import { reactive } from "vue";
 
-export default defineComponent({
-    components: {
-        ArrowRightOutlined
-    },
+const params = reactive({
+    q: 'time(2022-05-17 15:49:30..2022-05-18 15:49:30)',
+    s: 'internal_value_usd(desc)',
+    limit: 10,
+    offset: 0
+})
 
-    setup() {
-        return {
-            data: txs.data,
-            columns,
-        };
-    },
+const { data, error } = useTransactionList(params)
 
-    mounted() {
-        // list({
-        //     s: 'internal_value_usd(desc)',
-        //     limit: 10,
-        //     offset: 0
-        // }).then(res => {
-        //     console.log(res);
-        // })
-    }
-});
-
+function refresh() {
+    params.offset += 10;
+}
 </script>
 
 <style scoped>

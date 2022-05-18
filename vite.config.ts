@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { decode, encode } from 'querystring'
 
 /** https://vitejs.dev/config/ */
 export default defineConfig({
@@ -19,7 +20,7 @@ export default defineConfig({
         target: 'https://api.blockchair.com',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, 'ethereum')
+        rewrite: (path) => path.replace(/^\/api/, 'ethereum'),
       },
     }
   },
