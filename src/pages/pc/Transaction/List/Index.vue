@@ -33,6 +33,7 @@
 <script lang="ts" setup>
 import { ArrowRightOutlined } from '@ant-design/icons-vue';
 import { useTransactionList } from "@/composition/useMock";
+import { debounce } from "@/utils/debounce";
 import { columns } from "./columns";
 import { reactive } from "vue";
 
@@ -45,9 +46,10 @@ const params = reactive({
 
 const { data, error } = useTransactionList(params)
 
-function refresh() {
-    params.offset += 10;
-}
+const refresh = debounce(()=>{
+    console.log('wow');
+    params.offset += params.limit
+}, 500)
 </script>
 
 <style scoped>
