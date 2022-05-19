@@ -3,7 +3,7 @@
         <div class="desc">
             <div class="title">区块列表</div>
             <div class="buttons">
-                <a-button type="primary">刷新</a-button>
+                <a-button type="primary" @click="refresh">刷新</a-button>
             </div>
         </div>
         <div>
@@ -22,24 +22,22 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { useBlockList } from "@/composition/useMock";
 import { columns } from "./columns";
-import blocks from '@/mock/blocks.json'
+import { reactive } from "vue";
 
-export default defineComponent({
-    setup() {
-        return {
-            data: blocks.data,
-            columns,
-        };
-    },
+const params = reactive({
+    s: 'id(desc)',
+    limit: 10,
+    offset: 0
+})
 
-    mounted() {
-        
-    }
-});
+const { data, error } = useBlockList(params)
 
+function refresh() {
+    params.offset += 10;
+}
 </script>
 
 <style scoped>

@@ -8,7 +8,7 @@ import PC from "@/pages/pc/Index.vue";
 import Mobile from "@/pages/mobile/Index.vue";
 import { initRoutes } from "@/router"
 
-const isPC = window.innerWidth >= 1080;
+const isPC = window.innerWidth >= 720;
 initRoutes(isPC)
 </script>
 
