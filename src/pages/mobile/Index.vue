@@ -11,7 +11,7 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 </script>
 
-<style>
+<style scoped>
 /* 在该节点下的 css 变量 */
 .mobile-variables {
     --margin-lr: 24px;

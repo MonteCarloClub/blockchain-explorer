@@ -1,7 +1,9 @@
 <template>
     <div class="pc-app pc-variables">
         <Header v-if="$route.path !== '/'"></Header>
-        <router-view></router-view>
+        <div :class="{ body: $route.path !== '/'}">
+            <router-view></router-view>
+        </div>
         <Footer></Footer>
     </div>
 </template>
@@ -21,5 +23,9 @@ import Footer from "@/components/Footer.vue";
     min-width: 1280px;
     max-width: 1660px;
     position: relative;
+}
+
+.body {
+    padding: 0 var(--margin-lr, 92px);
 }
 </style>

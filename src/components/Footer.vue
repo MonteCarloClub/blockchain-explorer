@@ -15,7 +15,7 @@ import githubIcon from "@/assets/github.svg";
 const company = "Club de Monte Carlo"
 </script>
 
-<style>
+<style scoped>
 .footer {
     background-color: #fafafa;
     padding: 32px var(--margin-lr, 92px);

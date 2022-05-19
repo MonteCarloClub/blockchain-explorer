@@ -13,5 +13,10 @@ initRoutes(isPC)
 </script>
 
 <style>
-
+/* 全局样式 */
+.app {
+  max-width: 1240px;
+  position: relative;
+  margin: auto;
+}
 </style>

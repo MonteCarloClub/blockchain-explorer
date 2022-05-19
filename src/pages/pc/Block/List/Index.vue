@@ -1,11 +1,8 @@
 <template>
-    <div class="container">
-        <div class="desc">
-            <div class="title">区块列表</div>
-            <div class="buttons">
-                <a-button type="primary" @click="refresh">刷新</a-button>
-            </div>
-        </div>
+    <div>
+        <Title title="区块列表">
+            <a-button type="primary" @click="refresh">刷新</a-button>
+        </Title>
         <div>
             <a-table :columns="columns" :data-source="data" size="middle" :pagination="{ position: ['bottomCenter'] }">
                 <template #bodyCell="{ column, text }">
@@ -24,6 +21,7 @@
 
 <script lang="ts" setup>
 import { useBlockList } from "@/composition/useMock";
+import Title from '@/components/Title.vue';
 import { columns } from "./columns";
 import { reactive } from "vue";
 
@@ -41,23 +39,5 @@ function refresh() {
 </script>
 
 <style scoped>
-.container {
-    /* background-color: #fafafa; */
-    padding: 0 var(--margin-lr, 92px);
-}
 
-.desc {
-    margin: 32px 0;
-    display: flex;
-    line-height: 44px;
-}
-
-.desc .title {
-    flex-grow: 1;
-    font-size: 28px;
-}
-
-.desc .buttons {
-    flex-grow: 0;
-}
 </style>
