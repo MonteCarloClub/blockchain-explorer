@@ -3,9 +3,13 @@
         <div ref="gridsContainerEl" class="cluster">
             <div class="grids" :style="gridsStyle">
                 <div v-for="i in gridsNum" :key="i" class="grid block">
-                    <div class="grid-layer block" 
-                        :style="[gridLayerStyle, 'animationDelay:' + (i % 4 / gridsNum) * 2 +'s']"
+                    <div class="grid-layer block"
+                        :style="[gridLayerStyle, 'animationDelay:' + (i % 4 / gridsNum) * 2 + 's']"
+                        @click="layerClicked(i)"
                     ></div>
+                    <div v-if="eggShow" class="board" :style="[styles[i - 1]]">
+                        <p class="shining neonText"> {{ names[i - 1] }} </p>
+                    </div>
                 </div>
             </div>
             <canvas ref="canvasEl" class="path-canvas" :style="canvasLayerStyle"></canvas>
@@ -16,6 +20,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { neonPath } from "./neon.js";
+import { main } from "./index";
 
 const props = defineProps({
     width: {
@@ -49,6 +54,15 @@ const props = defineProps({
 })
 
 const gridsNum = computed(() => props.cols * props.rows)
+
+const { names, styles } = main(gridsNum.value);
+let eggShow = ref(false)
+
+function layerClicked(index:number) {
+    if (index === gridsNum.value) {
+        eggShow.value = true;
+    }
+}
 
 const gridsStyle = computed(() => {
     return {
@@ -113,8 +127,8 @@ onMounted(() => {
 
 .grid {
     position: relative;
-    transform-style: preserve-3d;
     background-color: white;
+    transform-style: preserve-3d;
     box-shadow: 40px 40px 40px 10px #87878788;
 }
 
@@ -124,8 +138,8 @@ onMounted(() => {
     position: absolute;
     transform: translateZ(30px);
     backdrop-filter: blur(10px);
+    animation: float 2s ease-in-out infinite;
     background-color: rgba(255, 255, 255, .1);
-	animation: float 2s ease-in-out infinite;
 }
 
 .block {
@@ -141,14 +155,74 @@ onMounted(() => {
 }
 
 @keyframes float {
-	0% {
-		transform: translateZ(30px);
-	}
-	50% {
-		transform: translateZ(40px);
-	}
-	100% {
-		transform: translateZ(30px);
-	}
+    0% {
+        transform: translateZ(30px);
+    }
+
+    50% {
+        transform: translateZ(40px);
+    }
+
+    100% {
+        transform: translateZ(30px);
+    }
+}
+
+.board {
+    opacity: 0;
+    animation: fade-in 2s ease;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateZ(40px) rotateZ(-45deg) rotateX(-60deg);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateZ(60px) rotateZ(-45deg) rotateX(-60deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateZ(70px) rotateZ(-45deg) rotateX(-60deg);
+    }
+}
+
+.neonText {
+    color: #000;
+    font-weight: bolder;
+    text-shadow: 0 0 6px #000
+}
+
+.shining {
+    animation: flicker 1.5s infinite alternate;
+}
+
+/* Flickering animation */
+@keyframes flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        text-shadow: 0 0 8px #000;
+        color: #000;
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+        color: gray;
+    }
 }
 </style>
