@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import TransactionTable from '@/components/tables/transaction/TransactionsTable.vue';
+import TransactionTable from '@/components/tables/TransactionTable.vue';
 import Title from '@/components/Title.vue';
 import { useTransactionList } from "@/composition/useMock";
 import { debounce } from "@/utils/debounce";

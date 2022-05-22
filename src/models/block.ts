@@ -8,7 +8,7 @@ export const columns = [
     { title: '出块时间', dataIndex: 'time', width: 160 },
     { title: '交易数量', dataIndex: 'transaction_count', width: 80 },
     { title: '调用数量', dataIndex: 'call_count', width: 80 },
-    { title: '矿工', dataIndex: 'miner', ellipsis:true },
+    { title: '矿工', dataIndex: 'miner', ellipsis: true },
     { title: '奖励 / USD', dataIndex: 'reward_usd', width: 180 },
     { title: '费用 / USD', dataIndex: 'fee_total_usd', width: 180 },
     { title: '消耗 / Gas', dataIndex: 'gas_used', width: 100 },

@@ -5,7 +5,7 @@ export function ParticleText(canvas, config) {
     const HEIGHT = canvas.height;
 
     var particles = [];
-    var mouse = { x: 0, y: 0 };
+    // var mouse = { x: 0, y: 0 };
 
     // 当前时间
     let now = Date.now();
@@ -20,12 +20,12 @@ export function ParticleText(canvas, config) {
         this.y = 0;
         // 初始速度
         this.vx = 0;
-        this.vy = speed + (Math.random()) * speed;
+        this.vy = Math.random() * speed;
         // 初始加速度
         this.accX = 0;
         this.accY = 0;
         // 摩擦，速度的保留比例
-        this.friction = Math.random() * 0.05 + 0.90;
+        this.friction = 0.93;
         this.color = color;
         // 激活时间
         this.activeTime = at;
@@ -54,16 +54,16 @@ export function ParticleText(canvas, config) {
         ctx.fill();
 
         // 远离鼠标
-        var mx = this.x - mouse.x;
-        var my = this.y - mouse.y;
+        // var mx = this.x - mouse.x;
+        // var my = this.y - mouse.y;
 
-        var distance = Math.sqrt(mx * mx + my * my);
-        if (distance < radius) {
-            this.accX = (this.x - mouse.x) / 500;
-            this.accY = (this.y - mouse.y) / 500;
-            this.vx += this.accX;
-            this.vy += this.accY;
-        }
+        // var distance = Math.sqrt(mx * mx + my * my);
+        // if (distance < radius) {
+        //     this.accX = (this.x - mouse.x) / 500;
+        //     this.accY = (this.y - mouse.y) / 500;
+        //     this.vx += this.accX;
+        //     this.vy += this.accY;
+        // }
     };
 
     // canvas.addEventListener("mousemove", (e) => {
@@ -86,7 +86,7 @@ export function ParticleText(canvas, config) {
     function initParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.font = `bold ${fontSize}px sans-serif`;
+        ctx.font = `${fontSize}px sans-serif`;
         ctx.fillText(text, textX, textY + fontSize);
         
         var data = ctx.getImageData(0, 0, WIDTH, HEIGHT).data;

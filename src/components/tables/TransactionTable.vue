@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { ArrowRightOutlined } from '@ant-design/icons-vue';
-import { columns } from "./columns";
+import { columns } from "@/models/transaction";
 import { PropType } from "vue";
 
 defineProps({

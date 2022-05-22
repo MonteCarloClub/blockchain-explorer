@@ -57,9 +57,10 @@ const gridsNum = computed(() => props.cols * props.rows)
 
 const { names, styles } = main(gridsNum.value);
 let eggShow = ref(false)
+const picked = Math.round(Math.random() * gridsNum.value)
 
 function layerClicked(index:number) {
-    if (index === gridsNum.value) {
+    if (index === picked) {
         eggShow.value = true;
     }
 }
@@ -110,6 +111,7 @@ onMounted(() => {
 <style scoped>
 .container {
     transform-style: preserve-3d;
+    pointer-events: all;
 }
 
 .cluster {

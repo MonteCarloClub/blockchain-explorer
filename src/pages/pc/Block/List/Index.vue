@@ -4,25 +4,16 @@
             <a-button type="primary" @click="refresh">刷新</a-button>
         </Title>
         <div>
-            <a-table :columns="columns" :data-source="data" size="middle" :pagination="{ position: ['bottomCenter'] }">
-                <template #bodyCell="{ column, text }">
-                    <template v-if="column.dataIndex === 'id'">
-                        <router-link :to="'/block/' + text">{{ text }}</router-link>
-                    </template>
-                    <template v-if="column.dataIndex === 'miner'">
-                        <router-link :to="'/address/' + text">{{ text }}</router-link>
-                    </template>
-                </template>
-            </a-table>
+            <BlockTable :data="data"></BlockTable>
         </div>
     </div>
 </template>
 
 
 <script lang="ts" setup>
+import BlockTable from '@/components/tables/BlockTable.vue';
 import { useBlockList } from "@/composition/useMock";
 import Title from '@/components/Title.vue';
-import { columns } from "./columns";
 import { reactive } from "vue";
 
 const params = reactive({

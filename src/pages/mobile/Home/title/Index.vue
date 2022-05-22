@@ -33,9 +33,9 @@ onMounted(() => {
             fontSize: 36,
             radius: 50,
             textX: 24,
-            textY: props.height - 64,
+            textY: props.height - 42,
             size: 1,
-            gap: 2,
+            gap: 1,
             speed: 5
         })
         cool.init()

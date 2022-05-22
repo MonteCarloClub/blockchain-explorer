@@ -1,13 +1,11 @@
 <template>
     <div class="mobile-app mobile-variables">
-        <Header v-if="$route.path !== '/'"></Header>
         <router-view></router-view>
         <Footer></Footer>
     </div>
 </template>
 
 <script setup lang="ts">
-import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 </script>
 
