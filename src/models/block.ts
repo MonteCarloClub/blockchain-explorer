@@ -5,7 +5,7 @@
 
 export const columns = [
     { title: '高度', dataIndex: 'id', width: 100 },
-    { title: '出块时间', dataIndex: 'time', width: 160 },
+    { title: '出块时间', dataIndex: 'time', width: 180 },
     { title: '交易数量', dataIndex: 'transaction_count', width: 80 },
     { title: '调用数量', dataIndex: 'call_count', width: 80 },
     { title: '矿工', dataIndex: 'miner', ellipsis: true },

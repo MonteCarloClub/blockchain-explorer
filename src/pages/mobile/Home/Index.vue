@@ -4,7 +4,9 @@
         <h3>{{ title }}</h3>
     </div>
     <div class="section">
-        <h3 class="card-title">最新区块</h3>
+        <router-link to="/blocks">
+            <h3 class="card-title">最新区块</h3>
+        </router-link>
         <Blocks></Blocks>
     </div>
     <div class="section">
@@ -21,7 +23,7 @@ import { KCHAIN, KCHAIN_TITLE } from "@/common/constants";
 
 const en = KCHAIN;
 const title = KCHAIN_TITLE;
-const width = window.innerWidth
+const width = window.innerWidth;
 </script>
 
 
