@@ -1,18 +1,23 @@
 <template>
-    <a-timeline>
-        <a-timeline-item v-for="(block, i) in data?.slice(0, 5)">
-            <ListItem :data="block" :map="map"></ListItem>
-        </a-timeline-item>
-    </a-timeline>
+    <div class="horizon-scroll">
+        <div class="grids">
+            <div v-for="(block, i) in data" @click="toBlockDetail(block.id)">
+                <GridItem :data="block" :map="map">
+                    <img :src="cubeIcon" />
+                </GridItem>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import ListItem from "@/components/mobile/ListItem.vue";
-import { ListItemMap } from "@/components/mobile/types";
+import GridItem from "@/components/mobile/GridItem.vue";
+import { GridItemMap } from "@/components/mobile/types";
 import { useBlockList } from "@/composition/useMock";
+import cubeIcon from "@/assets/cube.svg";
 import { reactive } from "vue";
+import router from "@/router";
 
-// TODO: 抽象出来
 const params = reactive({
     s: 'id(desc)',
     limit: 10,
@@ -21,12 +26,33 @@ const params = reactive({
 
 
 // TODO: 抽象到 models 中
-const map: ListItemMap = {
+const map: GridItemMap = {
     title: { index: 'id' },
-    subTitle: { index: 'time' },
-    desc: { index: 'size', process: (v) => v + ' bytes' },
-    subDesc: { index: 'transaction_count', process: (v) => v + ' 笔交易' }
+    subTitle: { index: 'transaction_count', process: (v) => v + ' 笔交易' },
+    desc: { index: 'time' }
 }
 
 const { data, error } = useBlockList(params)
+
+function toBlockDetail(blockid: number) {
+    router.push(`/block/${blockid}`)
+}
 </script>
+
+<style scoped>
+.horizon-scroll {
+    overflow-x: auto;
+    width: 100%;
+}
+
+
+.horizon-scroll::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.grids {
+    display: flex;
+    gap: 22px;
+}
+</style>
