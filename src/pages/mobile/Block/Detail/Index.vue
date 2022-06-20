@@ -1,10 +1,14 @@
 <template>
-    <h1>区块详情</h1>
+    <SubTitle title="区块详情" type="h1"></SubTitle>
     <a-list bordered>
         <ALItem title="区块高度">{{ height }}</ALItem>
         <ALItem title="哈希">{{ data?.header.hash }}</ALItem>
         <ALItem title="出块时间">{{ data?.header.timestamp }}</ALItem>
-        <ALItem title="矿工">{{ data?.header.miner }}</ALItem>
+        <ALItem title="矿工">
+            <router-link :to="'/address/' + data?.header.miner">
+                {{ data?.header.miner }}
+            </router-link>
+        </ALItem>
         <ALItem title="奖励">{{ data?.header.blockReward }}</ALItem>
         <ALItem title="交易数量">{{ data?.header.transactionCount }}</ALItem>
         <ALItem title="难度">{{ data?.header.difficulty }}</ALItem>
@@ -21,7 +25,7 @@
             <a-list-item>{{ item.label }}</a-list-item>
         </template>
     </a-list> -->
-    <h2>交易列表</h2>
+    <SubTitle title="交易列表" type="h2"></SubTitle>
     <div class="container">
         <a-timeline>
             <a-timeline-item v-for="(tx, i) in data?.transactions">
@@ -38,6 +42,7 @@ import ALItem from "@/components/mobile/AntListItem.vue";
 import { blkDetail } from "@/models/blockDetail"
 import { ListItemMap } from "@/components/mobile/types";
 import ListItem from "@/components/mobile/ListItem.vue";
+import SubTitle from "@/components/mobile/SubTitle.vue";
 
 const labels = blkDetail;
 
@@ -60,5 +65,8 @@ const { data, error } = useBlockDetail(params);
 </script>
 
 <style scoped>
-
+.container {
+    /* background-color: #fafafa; */
+    padding: 0 var(--margin-lr, 92px);
+}
 </style>

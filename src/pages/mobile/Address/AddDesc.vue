@@ -1,6 +1,6 @@
 <template>
     <a-descriptions bordered>
-        <a-descriptions-item v-for="item in maps" :label="item.label">
+        <a-descriptions-item v-if="data" v-for="item in maps" :label="item.label" :labelStyle="labelStyle">
             {{ data[item.key] }}
         </a-descriptions-item>
     </a-descriptions>
@@ -17,8 +17,12 @@ defineProps({
     maps: {
         type: Object as PropType<AddressDescMap>,
         required: true,
-    }
+    },
 });
+
+const labelStyle = {
+    "white-space": "nowrap" /* 取消表头换行 */
+}
 </script>
 <style scoped>
 </style>
