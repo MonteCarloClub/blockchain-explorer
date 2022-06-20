@@ -31,6 +31,5 @@ defineProps({
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 12px;
 }
 </style>

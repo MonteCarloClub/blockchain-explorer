@@ -15,29 +15,50 @@
         <ALItem title="Gas 上限">{{ data?.header.gasLimit }}</ALItem>
         <ALItem title="Gas 消耗">{{ data?.header.gasUsed }}</ALItem>
     </a-list>
-
+    <!-- <a-list bordered :data-source="labels">
+        <template #renderItem="{ item }">
+            <ALItem :title="item.label">{{data?.header[item.key]}}</ALItem>
+            <a-list-item>{{ item.label }}</a-list-item>
+        </template>
+    </a-list> -->
+    <h2>交易列表</h2>
+    <div class="container">
+        <a-timeline>
+            <a-timeline-item v-for="(tx, i) in data?.transactions">
+                <ListItem :data="tx" :map="map"></ListItem>
+            </a-timeline-item>
+        </a-timeline>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { useBlockDetail } from "@/composition/useMock";
 import { reactive } from "vue"
 import ALItem from "@/components/mobile/AntListItem.vue";
+import { blkDetail } from "@/models/blockDetail"
+import { ListItemMap } from "@/components/mobile/types";
+import ListItem from "@/components/mobile/ListItem.vue";
+
+const labels = blkDetail;
 
 const props = defineProps({
     height: String
 })
 
+const map: ListItemMap = {
+    title: { index: 'hash' },
+    subTitle: { index: 'time' },
+    desc: { index: 'value_usd', process: (v) => v + ' USD' },
+    subDesc: { index: 'gas_used', process: (v) => v + ' Gas' }
+}
+
 const params = reactive({
     id: props.height || '123'
 })
 
-const { data, error } = useBlockDetail(params)
+const { data, error } = useBlockDetail(params);
 </script>
 
 <style scoped>
-h1,
-h2 {
-    text-align: center;
-    margin-top: 32px;
-}
+
 </style>

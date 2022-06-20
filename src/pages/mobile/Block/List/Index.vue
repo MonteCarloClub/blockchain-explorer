@@ -73,10 +73,10 @@ function refresh() {
 </script>
 
 <style scoped>
-.container {
-    /* background-color: #fafafa; */
+/* .container {
+    background-color: #fafafa;
     padding: 0 var(--margin-lr, 92px);
-}
+} */
 
 .desc {
     margin: 32px 0;

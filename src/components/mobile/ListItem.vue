@@ -1,12 +1,12 @@
 <template>
     <div :class="{ item: padding }">
         <div class="item-row">
-            <div class="primary-text"> {{ display.title }} </div>
-            <div class="second-text"> {{ display.subTitle }} </div>
+            <div class="primary text"> {{ display.title }} </div>
+            <div class="second text"> {{ display.subTitle }} </div>
         </div>
         <div class="item-row">
-            <div>{{ display.desc }}</div>
-            <div>{{ display.subDesc }}</div>
+            <div class="text">{{ display.desc }}</div>
+            <div class="text">{{ display.subDesc }}</div>
         </div>
     </div>
 </template>
@@ -57,11 +57,14 @@ Object.entries(props.map).map(([key, value]) => {
     flex: 1;
 }
 
-.primary-text {
+.primary {
     font-weight: bold;
+    margin-right: 12px;
+}
+
+.text {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 12px;
 }
 </style>

@@ -10,7 +10,9 @@
         <Blocks></Blocks>
     </div>
     <div class="section">
-        <h3 class="card-title">最新交易</h3>
+        <router-link to="/transactions">
+            <h3 class="card-title">最新交易</h3>
+        </router-link>
         <Txs></Txs>
     </div>
 </template>

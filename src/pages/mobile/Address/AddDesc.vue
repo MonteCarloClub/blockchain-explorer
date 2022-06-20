@@ -5,23 +5,20 @@
         </a-descriptions-item>
     </a-descriptions>
 </template>
-
-<script setup lang="ts">
+<script lang="ts" setup>
 import { maps } from "@/models/address";
 import { PropType } from "vue";
 import { AddressDescMap } from "./types";
 
 defineProps({
     data: {
-        type: Object as PropType<Object | any>,
+        type: Object as PropType<Object | any>
     },
     maps: {
         type: Object as PropType<AddressDescMap>,
-        required: true
-    },
+        required: true,
+    }
 });
-
 </script>
-
 <style scoped>
 </style>
