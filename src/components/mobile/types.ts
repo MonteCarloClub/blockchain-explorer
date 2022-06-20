@@ -11,3 +11,9 @@ export type ListItemMap = {
     desc: PropMap;
     subDesc: PropMap;
 }
+
+export type GridItemMap = {
+    title: PropMap;
+    subTitle: PropMap;
+    desc: PropMap;
+}

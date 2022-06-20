@@ -31,7 +31,7 @@ const width = window.innerWidth;
 
 <style scoped>
 .section {
-    margin: 0 var(--margin-lr, 24px);
+    margin: 0 var(--margin-lr, 24px) 20px;
 }
 
 .card-title {

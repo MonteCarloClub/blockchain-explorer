@@ -17,6 +17,7 @@ import Footer from "@/components/Footer.vue";
 
 .mobile-app {
     position: relative;
+    background-color: #fafafa;
 }
 
 </style>

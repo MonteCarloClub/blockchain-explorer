@@ -1,6 +1,6 @@
 <template>
     <Title title="地址详情"></Title>
-    <AddressDesc v-if="data" :data="data?.summary" :maps="maps"></AddressDesc>
+    <AddressDesc :data="data?.summary" :maps="maps"></AddressDesc>
     <a-divider />
     <h2>交易列表</h2>
     <TransactionTable :data="data?.transactions"></TransactionTable>

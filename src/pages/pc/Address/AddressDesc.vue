@@ -1,5 +1,5 @@
 <template>
-    <a-descriptions bordered>
+    <a-descriptions v-if="data" bordered>
         <a-descriptions-item v-for="item in maps" :label="item.label">
             {{ data[item.key] }}
         </a-descriptions-item>
