@@ -1,9 +1,10 @@
 <template>
-    <div :class="{ item: padding }">
+    <div :class="{ padding: padding }">
         <div class="item-row">
             <div class="primary text"> {{ display.title }} </div>
             <div class="second text"> {{ display.subTitle }} </div>
         </div>
+        <div class="divider"></div>
         <div class="item-row">
             <div class="text">{{ display.desc }}</div>
             <div class="text">{{ display.subDesc }}</div>
@@ -44,17 +45,21 @@ Object.entries(props.map).map(([key, value]) => {
 </script>
 
 <style scoped>
-.item {
-    padding-bottom: 20px;
+.padding {
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .item-row {
     display: flex;
-    padding-bottom: 8px;
 }
 
 .item-row :nth-child(1) {
     flex: 1;
+}
+
+.divider {
+    height: 8px;
 }
 
 .primary {

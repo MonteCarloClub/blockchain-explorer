@@ -18,7 +18,6 @@ import CardItem from "@/components/mobile/CardItem.vue";
 import txIcon from "@/assets/transaction.svg";
 import router from "@/router";
 
-// TODO: 抽象到 models 中
 const params = reactive({
     q: 'time(2022-05-17 15:49:30..2022-05-18 15:49:30)',
     s: 'internal_value_usd(desc)',

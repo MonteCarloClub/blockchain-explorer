@@ -52,6 +52,7 @@ function toBlockDetail(blockid: number) {
 }
 
 .grids {
+    width: fit-content;
     display: flex;
     gap: 22px;
 }
