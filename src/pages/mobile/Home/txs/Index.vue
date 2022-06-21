@@ -1,11 +1,9 @@
 <template>
-    <div class="horizon-scroll">
-        <div class="grids">
-            <div v-for="(tx, i) in data?.slice(0, 5)">
-                <CardItem :data="tx" :map="map" @click="toTxDetail(tx.id)">
-                    <img :src="txIcon" />
-                </CardItem>
-            </div>
+    <div class="grids">
+        <div class="card-item" v-for="(tx, i) in data?.slice(0, 5)">
+            <CardItem :data="tx" :map="map" @click="toTxDetail(tx.hash)">
+                <img :src="txIcon" />
+            </CardItem>
         </div>
     </div>
 </template>
@@ -35,7 +33,7 @@ const map: ListItemMap = {
 
 const { data, error } = useTransactionList(params)
 
-function toTxDetail(txid: number) {
+function toTxDetail(txid: string) {
     router.push('/transaction/' + txid);
 }
 
@@ -45,5 +43,9 @@ function toTxDetail(txid: number) {
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.card-item :hover {
+    background-color: #ededed;
 }
 </style>
