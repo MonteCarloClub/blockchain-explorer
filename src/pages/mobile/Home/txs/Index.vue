@@ -1,12 +1,22 @@
 <template>
-    <ListItem padding v-for="(tx, i) in data?.slice(0, 5)" :data="tx" :map="map"></ListItem>
+    <div class="horizon-scroll">
+        <div class="grids">
+            <div v-for="(tx, i) in data?.slice(0, 5)">
+                <CardItem :data="tx" :map="map" @click="toTxDetail(tx.id)">
+                    <img :src="txIcon" />
+                </CardItem>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import ListItem from "@/components/mobile/ListItem.vue";
 import { ListItemMap } from "@/components/mobile/types";
 import { useTransactionList } from "@/composition/useMock";
 import { reactive } from "vue";
+import CardItem from "@/components/mobile/CardItem.vue";
+import txIcon from "@/assets/transaction.svg";
+import router from "@/router";
 
 // TODO: 抽象到 models 中
 const params = reactive({
@@ -20,9 +30,21 @@ const params = reactive({
 const map: ListItemMap = {
     title: { index: 'hash' },
     subTitle: { index: 'time' },
-    desc: { index: 'value_usd', process: (v) => v + ' USD' },
+    desc: { index: 'value_usd', process: (v) => '$ ' + v },
     subDesc: { index: 'gas_used', process: (v) => v + ' Gas' }
 }
 
 const { data, error } = useTransactionList(params)
+
+function toTxDetail(txid: number) {
+    router.push('/transaction/' + txid);
+}
+
 </script>
+<style scoped>
+.grids {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+</style>

@@ -1,5 +1,6 @@
 <template>
     <div class="mobile-app mobile-variables">
+        <Header></Header>
         <router-view></router-view>
         <Footer></Footer>
     </div>
@@ -7,6 +8,7 @@
 
 <script setup lang="ts">
 import Footer from "@/components/Footer.vue";
+import Header from "@/components/mobile/Header.vue"
 </script>
 
 <style scoped>
