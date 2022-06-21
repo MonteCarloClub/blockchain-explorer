@@ -1,5 +1,7 @@
 <template>
-    <ListItem padding v-for="(tx, i) in data?.slice(0, 5)" :data="tx" :map="map"></ListItem>
+    <div class="list-item" v-for="(tx, i) in data?.slice(0, 6)" :key="tx.id" @click="toTxDetail(tx.hash)">
+        <ListItem padding :data="tx" :map="map"></ListItem>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -7,8 +9,8 @@ import ListItem from "@/components/mobile/ListItem.vue";
 import { ListItemMap } from "@/components/mobile/types";
 import { useTransactionList } from "@/composition/useMock";
 import { reactive } from "vue";
+import router from "@/router";
 
-// TODO: 抽象到 models 中
 const params = reactive({
     q: 'time(2022-05-17 15:49:30..2022-05-18 15:49:30)',
     s: 'internal_value_usd(desc)',
@@ -25,4 +27,14 @@ const map: ListItemMap = {
 }
 
 const { data, error } = useTransactionList(params)
+
+function toTxDetail(hash: string) {
+    router.push(`/transaction/${hash}`)
+}
 </script>
+
+<style scoped>
+.list-item:hover {
+    background-color: #ededed;
+}
+</style>

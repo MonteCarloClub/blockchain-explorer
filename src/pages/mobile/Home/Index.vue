@@ -1,18 +1,20 @@
 <template>
     <Title :text="en" :width="width" :height="80"></Title>
-    <div class="section" style="margin-bottom: 20px;">
+    <div class="section">
         <h3>{{ title }}</h3>
     </div>
     <div class="section">
         <router-link to="/blocks">
             <h3 class="card-title">最新区块</h3>
         </router-link>
-        <Blocks></Blocks>
     </div>
+    <Blocks class="bias"></Blocks>
     <div class="section">
         <router-link to="/transactions">
             <h3 class="card-title">最新交易</h3>
         </router-link>
+    </div>
+    <div class="bias">
         <Txs></Txs>
     </div>
 </template>
@@ -31,11 +33,15 @@ const width = window.innerWidth;
 
 <style scoped>
 .section {
-    margin: 0 var(--margin-lr, 24px) 20px;
+    margin: var(--margin-lr, 24px);
 }
 
 .card-title {
     font-weight: bold;
-    margin-bottom: 24px;
+}
+
+.bias:deep>div {
+    padding-left: var(--margin-lr, 24px);
+    padding-right: var(--margin-lr, 24px);
 }
 </style>
