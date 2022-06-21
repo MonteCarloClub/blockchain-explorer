@@ -1,5 +1,5 @@
 <template>
-    <h1>交易详情</h1>
+    <SubTitle title="交易详情" type="h1"></SubTitle>
     <a-list bordered>
         <ALItem title="哈希">{{ hash }}</ALItem>
         <ALItem title="状态">
@@ -45,6 +45,7 @@ import { useTransactionDetail } from "@/composition/useMock";
 import { reactive } from "vue"
 import ALItem from "@/components/mobile/AntListItem.vue";
 import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons-vue';
+import SubTitle from "@/components/mobile/SubTitle.vue";
 
 const props = defineProps({
     hash: String

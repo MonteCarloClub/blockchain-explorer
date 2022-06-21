@@ -20,16 +20,4 @@ import Footer from "@/components/Footer.vue";
     background-color: #fafafa;
 }
 
-h1,
-h2 {
-    text-align: center;
-    margin-top: 32px;
-    color: aquamarine;
-}
-
-/* 给timeline组件增加边距 */
-.container {
-    /* background-color: #fafafa; */
-    padding: 0 var(--margin-lr, 92px);
-}
 </style>

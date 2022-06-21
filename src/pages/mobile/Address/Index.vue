@@ -1,7 +1,7 @@
 <template>
-    <h1>地址详情</h1>
+    <SubTitle title="地址详情" type="h1"></SubTitle>
     <AddDesc v-if="data" :maps="maps" :data="data.summary"></AddDesc>
-    <h2>交易列表</h2>
+    <SubTitle title="交易列表"></SubTitle>
     <div class="container">
         <a-timeline>
             <a-timeline-item v-for="(tx, i) in data?.transactions">
@@ -18,6 +18,7 @@ import { maps } from "@/models/address";
 import AddDesc from "./AddDesc.vue";
 import ListItem from "@/components/mobile/ListItem.vue";
 import { ListItemMap } from "@/components/mobile/types";
+import SubTitle from "@/components/mobile/SubTitle.vue";
 
 const props = defineProps({
     address: String
@@ -38,5 +39,8 @@ const { data, error } = useAddressDetail(params)
 </script>
 
 <style scoped>
-
+.container {
+    /* background-color: #fafafa; */
+    padding: 0 var(--margin-lr, 92px);
+}
 </style>
