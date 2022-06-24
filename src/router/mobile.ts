@@ -22,8 +22,18 @@ export const routes = [
         props: true
     },
     {
+        path: '/block/:height/transaction',
+        component: () => import("@/pages/mobile/Block/Detail/Transaction.vue"),
+        props: true
+    },
+    {
         path: '/address/:address',
         component: () => import("@/pages/mobile/Address/Index.vue"),
+        props: true
+    },
+    {
+        path: '/address/:address/transaction',
+        component: () => import("@/pages/mobile/Address/Transaction.vue"),
         props: true
     }
 ]

@@ -50,13 +50,17 @@ Object.entries(props.map).map(([key, value]) => {
     padding: 12px;
 }
 
+.item:hover {
+    background-color: var(--hover-color, #ededed);
+}
+
 .title {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
 }
 
-.icon >>> img{
+.icon>>>img {
     width: 28px;
     height: 28px;
 }

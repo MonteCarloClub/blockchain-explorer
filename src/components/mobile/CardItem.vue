@@ -54,6 +54,10 @@ Object.entries(props.map).map(([key, value]) => {
     justify-content: space-between;
 }
 
+.item:hover {
+    background-color: var(--hover-color, #ededed);
+}
+
 .title {
     margin: 0 12px;
     white-space: nowrap;
@@ -73,13 +77,13 @@ Object.entries(props.map).map(([key, value]) => {
     text-overflow: ellipsis;
 }
 
-.second{
-    font-size: 5px;
+.second {
+    font-size: 12px;
     color: rgb(56, 55, 55);
 }
 
 .third {
-    white-space: nowrap; 
+    white-space: nowrap;
     font-size: 18px;
 }
 </style>

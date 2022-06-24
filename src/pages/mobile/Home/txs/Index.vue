@@ -1,6 +1,6 @@
 <template>
     <div class="grids">
-        <div class="card-item" v-for="(tx, i) in data?.slice(0, 5)">
+        <div v-for="(tx, i) in data?.slice(0, 5)">
             <CardItem :data="tx" :map="map" @click="toTxDetail(tx.hash)">
                 <img :src="txIcon" />
             </CardItem>
@@ -43,9 +43,5 @@ function toTxDetail(txid: string) {
     display: flex;
     flex-direction: column;
     gap: 16px;
-}
-
-.card-item :hover {
-    background-color: #ededed;
 }
 </style>
