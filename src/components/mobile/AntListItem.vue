@@ -1,11 +1,11 @@
 <template>
-    <a-list-item>
-        <div class="primary-text">
+    <a-list-item class="item">
+        <span class="primary-text">
             {{ title }}
-        </div>
-        <div class="second-text">
+        </span>
+        <span class="second-text">
             <slot></slot>
-        </div>
+        </span>
     </a-list-item>
 </template>
 
@@ -19,15 +19,20 @@ defineProps({
 </script>
 
 <style scoped>
+.item {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 12px 0;
+}
+
 .primary-text {
+    flex-shrink: 0;
     font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 12px;
+    margin-right: 24px;
 }
 
 .second-text {
+    flex-shrink: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -1,6 +1,6 @@
 <template>
     <SubTitle title="交易详情" type="h1"></SubTitle>
-    <a-list bordered>
+    <a-list class="container">
         <ALItem title="哈希">{{ hash }}</ALItem>
         <ALItem title="状态">
             <a-tag v-if="data?.failed" color="default">
@@ -59,5 +59,12 @@ const { data, error } = useTransactionDetail(params);
 </script>
 
 <style scoped>
+.container {
+    /* background-color: #fafafa; */
+    padding: 0 var(--margin-lr, 92px);
+}
 
+.ant-tag{
+    margin-right: 0px;
+}
 </style>

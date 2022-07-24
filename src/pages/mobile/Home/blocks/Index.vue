@@ -1,7 +1,7 @@
 <template>
     <div class="horizon-scroll">
         <div class="grids">
-            <div v-for="(block, i) in data" @click="toBlockDetail(block.id)">
+            <div  v-for="(block, i) in data" @click="toBlockDetail(block.id)">
                 <GridItem :data="block" :map="map">
                     <img :src="cubeIcon" />
                 </GridItem>
@@ -56,4 +56,5 @@ function toBlockDetail(blockid: number) {
     display: flex;
     gap: 22px;
 }
+
 </style>

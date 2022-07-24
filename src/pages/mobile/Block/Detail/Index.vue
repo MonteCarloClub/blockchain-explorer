@@ -1,6 +1,6 @@
 <template>
     <SubTitle title="区块详情" type="h1"></SubTitle>
-    <a-list bordered>
+    <a-list class="container">
         <ALItem title="区块高度">{{ height }}</ALItem>
         <ALItem title="哈希">{{ data?.header.hash }}</ALItem>
         <ALItem title="出块时间">{{ data?.header.timestamp }}</ALItem>
@@ -10,7 +10,11 @@
             </router-link>
         </ALItem>
         <ALItem title="奖励">{{ data?.header.blockReward }}</ALItem>
-        <ALItem title="交易数量">{{ data?.header.transactionCount }}</ALItem>
+        <ALItem title="交易数量">
+            <router-link :to="'/block/' + height + '/transaction'">
+                {{ data?.header.transactionCount }}
+            </router-link>
+            </ALItem>
         <ALItem title="难度">{{ data?.header.difficulty }}</ALItem>
         <ALItem title="总难度">{{ data?.header.totalDifficulty }}</ALItem>
         <ALItem title="大小">{{ data?.header.size }}</ALItem>
@@ -25,14 +29,6 @@
             <a-list-item>{{ item.label }}</a-list-item>
         </template>
     </a-list> -->
-    <SubTitle title="交易列表" type="h2"></SubTitle>
-    <div class="container">
-        <a-timeline>
-            <a-timeline-item v-for="(tx, i) in data?.transactions">
-                <ListItem :data="tx" :map="map"></ListItem>
-            </a-timeline-item>
-        </a-timeline>
-    </div>
 </template>
 
 <script setup lang="ts">
@@ -41,7 +37,6 @@ import { reactive } from "vue"
 import ALItem from "@/components/mobile/AntListItem.vue";
 import { blkDetail } from "@/models/blockDetail"
 import { ListItemMap } from "@/components/mobile/types";
-import ListItem from "@/components/mobile/ListItem.vue";
 import SubTitle from "@/components/mobile/SubTitle.vue";
 
 const labels = blkDetail;
