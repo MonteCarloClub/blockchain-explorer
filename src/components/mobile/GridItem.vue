@@ -56,7 +56,7 @@ Object.entries(props.map).map(([key, value]) => {
     margin-bottom: 40px;
 }
 
-.icon >>> img{
+.icon :deep(img) {
     width: 28px;
     height: 28px;
 }
