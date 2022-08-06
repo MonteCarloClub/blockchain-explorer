@@ -10,6 +10,6 @@ export const columns = [
     { title: '付款方', dataIndex: 'sender', ellipsis: true },
     { title: ' ', dataIndex: 'to_icon', width: 30 },
     { title: '收款方', dataIndex: 'recipient', ellipsis: true },
-    { title: '交易费用', dataIndex: 'fee_usd', width: 160 },
+    { title: '输入大小 / KB', dataIndex: 'input_size', width: 120, align: 'center' },
     { title: 'Gas 消耗', dataIndex: 'gas_used', width: 100, align: 'right' },
 ];
