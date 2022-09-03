@@ -3,17 +3,17 @@
     <a-list class="container">
         <ALItem title="哈希">{{ hash }}</ALItem>
         <ALItem title="状态">
-            <a-tag v-if="data?.failed" color="default">
+            <a-tag v-if="data?.status === 'success'" color="#000">
                 <template #icon>
                     <close-circle-outlined />
                 </template>
-                失败
+                成功
             </a-tag>
-            <a-tag v-else color="#000">
+            <a-tag v-else color="default">
                 <template #icon>
                     <check-circle-outlined />
                 </template>
-                成功
+                失败
             </a-tag>
         </ALItem>
         <ALItem title="区块 id">{{ data?.block_id }}</ALItem>

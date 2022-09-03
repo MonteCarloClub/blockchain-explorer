@@ -1,7 +1,7 @@
 <template>
     <div class="pc-app pc-variables">
         <Header v-if="$route.path !== '/'"></Header>
-        <div :class="{ body: $route.path !== '/'}">
+        <div :class="{ body: $route.path !== '/' }" class="global-pc-container">
             <router-view></router-view>
         </div>
         <Footer></Footer>
@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import Header from "@/components/Header.vue";
+import Header from "@/components/header/Header.vue";
 import Footer from "@/components/Footer.vue";
 </script>
 
@@ -21,7 +21,6 @@ import Footer from "@/components/Footer.vue";
 
 .pc-app {
     min-width: 1280px;
-    max-width: 1660px;
     position: relative;
 }
 

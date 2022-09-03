@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Logo from "@/components/Logo.vue";
-import Nav from "@/components/Nav.vue";
+import Nav from "@/components/header/Nav.vue";
 import { ref } from 'vue'
 
 const searchkey = ref<string>('');
@@ -8,37 +8,39 @@ const searchkey = ref<string>('');
 
 <template>
     <div class="header">
-        <div class="logo">
-            <Logo></Logo>
-        </div>
-        <div>
-            <div class="group">
-                <a-input v-model:value="searchkey" :bordered="false" 
-                    placeholder="搜索 Address / Tx hash / Block" />
-                <span class="bar"></span>
+        <div class="global-pc-container header-content">
+            <div class="logo">
+                <Logo></Logo>
             </div>
+            <div>
+                <div class="group">
+                    <a-input v-model:value="searchkey" :bordered="false" 
+                        placeholder="搜索 Address / Tx hash / Block" />
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <Nav></Nav>
         </div>
-        <Nav></Nav>
     </div>
 </template>
 
 <style scoped>
-.header {
+.header-content {
+    padding: 0 var(--margin-lr, 92px);
+    align-items: center;
     line-height: 64px;
     display: flex;
-    margin: 0 var(--margin-lr, 92px);
-    align-items: center;
 }
 
-.header> :nth-child(1) {
+.header-content> :nth-child(1) {
     flex-basis: 200px;
 }
 
-.header> :nth-child(2) {
+.header-content> :nth-child(2) {
     flex: 1;
 }
 
-.header> :nth-child(3) {
+.header-content> :nth-child(3) {
     flex-shrink: 0;
 }
 

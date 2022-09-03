@@ -1,10 +1,12 @@
 <template>
     <div class="footer">
-        <Logo></Logo>
-        <a class="monte-link" href="https://github.com/MonteCarloClub">
-            <span> {{ company }} </span>
-            <img :src="githubIcon" />
-        </a>
+        <div class="footer-content global-pc-container">
+            <Logo></Logo>
+            <a class="monte-link" href="https://github.com/MonteCarloClub">
+                <span> {{ company }} </span>
+                <img :src="githubIcon" />
+            </a>
+        </div>
     </div>
 </template>
 
@@ -18,16 +20,19 @@ const company = "Club de Monte Carlo"
 <style scoped>
 .footer {
     background-color: #fafafa;
+}
+
+.footer-content {
     padding: 32px var(--margin-lr, 92px);
-    display: flex;
     justify-content: space-between;
+    display: flex;
 }
 
 .monte-link {
-    color: black;
     text-decoration: underline;
-    display: flex;
     align-items: center;
+    color: black;
+    display: flex;
     gap: 8px;
 }
 

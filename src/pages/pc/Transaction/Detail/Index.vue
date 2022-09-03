@@ -3,8 +3,8 @@
     <div class="info">
         <Item title="哈希">{{ hash }}</Item>
         <Item title="状态">
-            <a-tag v-if="data?.failed" color="default"> 失败 </a-tag>
-            <a-tag v-else color="#000"> 成功 </a-tag>
+            <a-tag v-if="data?.status === 'success'" color="#000"> 成功 </a-tag>
+            <a-tag v-else color="default"> 失败 </a-tag>
         </Item>
         <Item title="区块 id">{{ data?.block_id }}</Item>
         <Item title="时间">{{ data?.time }}</Item>
