@@ -9,6 +9,9 @@
         <router-link to="/blocks">
             <div> 区块 </div>
         </router-link>
+        <router-link to="/test">
+            <div> 测试 </div>
+        </router-link>
     </div>
 </template>
 
