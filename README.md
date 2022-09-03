@@ -88,27 +88,98 @@ $ pnpm run dev  # 启动
 >
 > num=15，page=2：如果每页最多展示 15 条交易的话，那么这个请求希望返回的结果第 2 页，即第 16 条到第 30 条
 
-返回示例：
+返回值字段含义：
+
+```text
+{
+    "data": {
+        "list": [               // 交易列表，是一个数组
+            {
+            	"block_id": 	// 所在区块的 ID
+            	"hash": 		// 交易哈希
+            	"status": 		// 交易状态 pending | failed | success
+	            "time": 		// 交易发生的时间
+            	"sender":   	// 发送方地址
+            	"recipient": 	// 接收方地址
+            	"gas_used": 	// Gas 消耗
+            	"input_size":   // Data 的大小
+            },
+        ],
+    },
+}
+```
+示例
 
 ```json
 {
     "data": {
-        "list": [  // 交易列表，是一个数组
+        "list": [
             {
-            	"block_id": 	// 所在区块的 ID,
-            	"hash": 		// 交易哈希,
-            	"status": 		// 交易状态 pending | failed | success,
-	            "time": 		// 交易发生的时间,
-            	"sender":   	// 发送方地址,
-            	"recipient": 	// 接收方地址,
-            	"gas_used": 	// Gas 消耗,
-            	"input_size":   // Data 的大小,
-                "gas_limit":    // gas 上限,
+            	"block_id": 13499798,
+            	"hash": "0x0fe2542079644e107cbf13690eb9c2c65963ccb79089ff96bfaf8dced2331c92",
+                "status": "success",
+	            "time": "2021-10-27 13:54:10",
+            	"sender": "0x24354d31bc9d90f62fe5f2454709c32049cf866b",
+            	"recipient": "0x961d2b694d9097f35cfffa363ef98823928a330d",
+            	"gas_used": 14936857,
+            	"input_size": 234,
+            }
+        ],
+        "num": 10
+    },
+    "code": 123
+}
+```
+
+### 交易详情
+
+| URL    | Type       |
+| ------ | ---------- |
+| `/tx/:hash` | GET / POST |
+
+请求参数：
+
+| 字段 | 含义           | 默认值 | 备注      |
+| ---- | -------------- | ------ | --------- |
+| hash  | 交易的哈希    |        |           |
+
+> 说明：
+>
+> num=10，page=1：如果每页最多展示 10 条交易的话，那么这个请求希望返回的结果是前 10 条
+>
+> num=15，page=2：如果每页最多展示 15 条交易的话，那么这个请求希望返回的结果第 2 页，即第 16 条到第 30 条
+
+返回值字段含义：
+
+```text
+{
+    "data": {
+        "list": [               // 交易列表，是一个数组
+            {
+            	"block_id": 	// 所在区块的 ID
+            	"hash": 		// 交易哈希
+            	"status": 		// 交易状态 pending | failed | success
+	            "time": 		// 交易发生的时间
+            	"sender":   	// 发送方地址
+            	"recipient": 	// 接收方地址
+            	"gas_used": 	// Gas 消耗
+            	"input_size":   // Data 的大小
+                "gas_limit":    // gas 上限
                 "input_hex":    // 输入数据
                 "v":            // 签名的 v
                 "r":            // 签名的 r
                 "s":            // 签名的 s
             },
+        ],
+    },
+}
+```
+示例
+
+```json
+{
+    "data": {
+        "list": [
             {
             	"block_id": 13499798,
             	"hash": "0x0fe2542079644e107cbf13690eb9c2c65963ccb79089ff96bfaf8dced2331c92",
@@ -125,27 +196,231 @@ $ pnpm run dev  # 启动
                 "s": "7240ed1a9242510171ee997da68563b56c78c8998564dcda2a98b443c9048424"
             }
         ],
-        "num": 10
+        "num": 1
     },
     "code": 123
 }
 ```
 
-### 交易详情
-
-
 
 ### 区块列表
 
+| URL       | Type       |
+| --------- | ---------- |
+| `/blocks` | GET / POST |
 
+请求参数：
+
+| 字段 | 含义           | 默认值 | 备注      |
+| ---- | -------------- | ------ | --------- |
+| num  | 返回结果的条数 | 10     |           |
+| page | 第几页         | 1      | 从 1 开始 |
+
+> 说明：
+>
+> num=10，page=1：如果每页最多展示 10 个区块的话，那么这个请求希望返回的结果是前 10 个
+>
+> num=15，page=2：如果每页最多展示 15 个区块的话，那么这个请求希望返回的结果第 2 页，即第 16 个到第 30 个
+
+返回值字段含义：
+
+```text
+{
+    "data": {
+        "list": [                    // 区块列表，是一个数组
+            {
+                "id":                // 区块高度
+                "hash":              // 区块哈希
+                "time":              // 出块时间
+                "size":              // 区块大小
+                "miner":             // 挖出该区块的矿工
+                "gas_used":          // Gas 消耗
+                "gas_limit":         // Gas 上限
+                "call_count":        // 调用数量
+                "transaction_count": // 交易数量
+                "reward":            // 奖励
+            },
+        ],
+    },
+}
+```
+示例
+
+```json
+{
+    "data": {
+        "list": [
+            {
+                "id": 14780189,
+                "hash": "0x755e529144783104348c0486a3f6b59e09e5de55b60d035dae819eeecb9deacb",
+                "time": "2022-05-15 13:22:14",
+                "size": 22756,
+                "miner": "0x1ad91ee08f21be3de0ba2ba6918e714da6b45836",
+                "gas_used": 5660699,
+                "gas_limit": 30000000,
+                "call_count": 325,
+                "transaction_count": 103,
+                "reward": "2025016513917900854",
+            }
+        ],
+        "num": 1
+    },
+    "code": 123
+}
+```
 
 ### 区块详情
 
+| URL    | Type       |
+| ------ | ---------- |
+| `/block/:id` | GET / POST |
 
+请求参数：
+
+| 字段 | 含义           | 默认值 | 备注      |
+| ---- | -------------- | ------ | --------- |
+| id  | 区块 ID    |        |           |
+
+返回值字段含义：
+
+```text
+{
+    "data": {
+        "id":                   // 区块高度
+        "hash":                 // 区块哈希
+        "time":                 // 出块时间
+        "size":                 // 区块大小
+        "miner":                // 挖出该区块的矿工
+        "gas_used":             // Gas 消耗
+        "gas_limit":            // Gas 上限
+        "call_count":           // 调用数量
+        "transaction_count":    // 交易数量
+        "reward":               // 奖励
+        "difficulty":           // 难度
+        "state_root":           // 状态树根节点哈希
+        "parent_hash":          // 父区块哈希
+        "transactions": [       // 交易列表
+            {
+            	"block_id": 	// 所在区块的 ID
+            	"hash": 		// 交易哈希
+            	"status": 		// 交易状态 pending | failed | success
+	            "time": 		// 交易发生的时间
+            	"sender":   	// 发送方地址
+            	"recipient": 	// 接收方地址
+            	"gas_used": 	// Gas 消耗
+            	"input_size":   // Data 的大小
+            },
+            {}
+        ]
+    },
+}
+```
+示例
+
+```json
+{
+    "data": {
+
+        "id": 14780189,
+        "hash": "0x755e529144783104348c0486a3f6b59e09e5de55b60d035dae819eeecb9deacb",
+        "time": "2022-05-15 13:22:14",
+        "size": 22756,
+        "miner": "0x1ad91ee08f21be3de0ba2ba6918e714da6b45836",
+        "gas_used": 5660699,
+        "gas_limit": 30000000,
+        "call_count": 325,
+        "transaction_count": 103,
+        "reward": "2025016513917900854",
+        "difficulty": 14394437004485724,
+        "state_root": "6c7e9686ba085ebbe5c66ed0827bb476f54d254d602a7a6b648de485e85db8b3",
+        "parent_hash": "0x3f3729d4ee6ab577130865fe5f579ede48627311055741286877fbe76f07010d",
+        "transactions": [
+            {
+            	"block_id": 13499798,
+            	"hash": "0x0fe2542079644e107cbf13690eb9c2c65963ccb79089ff96bfaf8dced2331c92",
+                "status": "success",
+	            "time": "2021-10-27 13:54:10",
+            	"sender": "0x24354d31bc9d90f62fe5f2454709c32049cf866b",
+            	"recipient": "0x961d2b694d9097f35cfffa363ef98823928a330d",
+            	"gas_used": 14936857,
+            	"input_size": 234,
+            },
+            {}
+        ],
+    },
+    "code": 123
+}
+```
 
 ### 地址详情
 
 
+| URL    | Type       |
+| ------ | ---------- |
+| `/address/:address` | GET / POST |
+
+请求参数：
+
+| 字段 | 含义           | 默认值 | 备注      |
+| ---- | -------------- | ------ | --------- |
+| address  | 账户地址 | 10     |           |
+
+
+返回值字段含义：
+
+```text
+{
+    "data": {
+        "balance":               // 余额
+        "transactionCount":      // 交易数
+        "totalSent":             // 总支出
+        "totalReceived":         // 总收入
+        "totalFees":             // 总手续费
+        "tokenTransferCount":    // 转账次数
+        "transactions": [        // 交易列表
+            {
+                "block_id": 	 // 所在区块的 ID
+                "hash": 		 // 交易哈希
+                "status": 		 // 交易状态 pending | failed | success
+                "time": 		 // 交易发生的时间
+                "sender":   	 // 发送方地址
+                "recipient": 	 // 接收方地址
+                "gas_used": 	 // Gas 消耗
+                "input_size":    // Data 的大小
+            },
+            {}
+        ]
+    },
+}
+```
+示例
+
+```json
+{
+    "data": {
+        "balance": "208523137837831461623131",
+        "transactionCount": "3459619",
+        "totalSent": "656395619568791545245619",
+        "totalReceived": "6822853272338219240159",
+        "totalFees": "3003923573014427468616",
+        "tokenTransferCount": "33"
+        "transactions": [
+            {
+            	"block_id": 13499798,
+            	"hash": "0x0fe2542079644e107cbf13690eb9c2c65963ccb79089ff96bfaf8dced2331c92",
+                "status": "success",
+	            "time": "2021-10-27 13:54:10",
+            	"sender": "0x24354d31bc9d90f62fe5f2454709c32049cf866b",
+            	"recipient": "0x961d2b694d9097f35cfffa363ef98823928a330d",
+            	"gas_used": 14936857,
+            	"input_size": 234,
+            },
+            {}
+        ],
+    },
+    "code": 123
+}
+```
 
 ## 会议纪要
 
