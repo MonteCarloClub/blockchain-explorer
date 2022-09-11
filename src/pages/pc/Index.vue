@@ -1,10 +1,17 @@
 <template>
     <div class="pc-app pc-variables">
-        <Header v-if="$route.path !== '/'"></Header>
-        <div :class="{ body: $route.path !== '/' }" class="global-pc-container">
-            <router-view></router-view>
+        <div v-if="$route.path === '/login'">
+            <div class="global-pc-container">
+                <router-view></router-view>
+            </div>
         </div>
-        <Footer></Footer>
+        <div v-else>
+            <Header v-if="$route.path !== '/'"></Header>
+            <div :class="{ body: $route.path !== '/' }" class="global-pc-container">
+                <router-view></router-view>
+            </div>
+            <Footer></Footer>
+        </div>
     </div>
 </template>
 

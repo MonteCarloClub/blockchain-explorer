@@ -25,5 +25,15 @@ export const routes = [
         path: '/address/:address',
         component: () => import("@/pages/pc/Address/Index.vue"),
         props: true
+    },
+    {
+        path: '/user/:address',
+        component: () => import("@/pages/pc/User/Index.vue"),
+        props: true
+    },
+    {
+        path: '/login/',
+        component: () => import("@/pages/pc/Login/Index.vue"),
+        props: true
     }
 ]
