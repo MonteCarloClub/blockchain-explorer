@@ -2,6 +2,8 @@
 
 什么是区块链浏览器，参考：[Etherscan](https://cn.etherscan.com/)
 
+预览：https://montecarloclub.github.io/be/
+
 ## 需求
 
 ### 展示性的需求
