@@ -1,5 +1,7 @@
 <template>
-    <div class="logo">Logo</div>
+    <router-link to="/login">
+        <div class="logo">Logo</div>
+    </router-link>
 </template>
 
 <style scoped>

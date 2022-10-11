@@ -32,7 +32,7 @@ export const routes = [
         props: true
     },
     {
-        path: '/login/',
+        path: '/login',
         component: () => import("@/pages/pc/Login/Index.vue"),
         props: true
     }
