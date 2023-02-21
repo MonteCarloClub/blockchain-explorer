@@ -6,7 +6,7 @@ declare namespace API {
     };
 
     /** 地址详细信息 */
-    type AddressDetail = {
+    type AddressDetailResponse = {
         id: string;
     };
 }

@@ -9,7 +9,7 @@ declare namespace API {
     };
 
     /** 区块列表 */
-    type BlockList = {
+    type BlockListResponse = {
         id: string;
     }[];
 
@@ -19,7 +19,7 @@ declare namespace API {
     };
 
     /** 区块详细信息 */
-    type BlockDetail = {
+    type BlockDetailResponse = {
         id: string;
     };
 }

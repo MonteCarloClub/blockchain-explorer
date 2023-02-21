@@ -6,7 +6,7 @@ import { request } from '@/utils/request';
  * @returns 区块详细信息
  */
  export function list(params: API.BlockListParams) {
-    return request<API.BlockList>(
+    return request<API.BlockListResponse>(
         {
             url: '/blocks',
             method: 'get',
@@ -21,7 +21,7 @@ import { request } from '@/utils/request';
  * @returns 区块详细信息
  */
 export function detail(data: API.BlockDetailParams) {
-    return request<API.BlockDetail>(
+    return request<API.BlockDetailResponse>(
         {
             url: '/block/detail',
             method: 'post',

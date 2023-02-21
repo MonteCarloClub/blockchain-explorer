@@ -6,7 +6,7 @@ import { request } from '@/utils/request';
  * @returns 交易详细信息
  */
  export function list(params: API.TransactionListParams) {
-    return request<API.TransactionList>(
+    return request<API.TransactionListResponse>(
         {
             url: '/transactions',
             method: 'get',
@@ -21,7 +21,7 @@ import { request } from '@/utils/request';
  * @returns 交易详细信息
  */
 export function detail(data: API.TransactionDetailParams) {
-    return request<API.TransactionDetail>(
+    return request<API.TransactionDetailResponse>(
         {
             url: '/transaction/detail',
             method: 'post',

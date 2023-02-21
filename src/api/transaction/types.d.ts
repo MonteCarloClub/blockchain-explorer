@@ -9,7 +9,7 @@ declare namespace API {
     };
 
     /** 交易列表 */
-    type TransactionList = {
+    type TransactionListResponse = {
         id: string;
         from: string;
         to: string;
@@ -21,7 +21,7 @@ declare namespace API {
     };
 
     /** 交易详细信息 */
-    type TransactionDetail = {
+    type TransactionDetailResponse = {
         id: string;
         from: string;
         to: string;

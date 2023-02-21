@@ -6,7 +6,7 @@ import { request } from '@/utils/request';
  * @returns 地址详细信息
  */
 export function detail(data: API.AddressDetailParams) {
-    return request<API.AddressDetail>(
+    return request<API.AddressDetailResponse>(
         {
             url: '/address/detail',
             method: 'post',
