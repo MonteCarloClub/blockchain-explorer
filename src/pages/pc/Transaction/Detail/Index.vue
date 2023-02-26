@@ -64,8 +64,8 @@ const params = reactive({
 });
 
 detail(params).then((res) => {
-  if (res && res.tx) {
-    transaction.value = res.tx;
+  if (res && res.data.tx) {
+    transaction.value = res.data.tx;
     hasResult.value = true;
     
   } else {

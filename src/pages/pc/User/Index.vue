@@ -1,6 +1,6 @@
 <template>
   <div v-if="hasUser">
-    <Title title="我的信息"> {{ userData.address }} </Title>
+    <Title title="我的信息" />
     <AddressDesc :data="summary" :maps="maps"></AddressDesc>
     <a-divider />
     <div style="display: flex; align-items: center; margin-bottom: 12px">
@@ -138,7 +138,7 @@ function handleSendTX() {
     .then((res) => {
       // console.log(res.tx_hash);
       message.success("成功发送交易");
-      transactions.value = addTx({ ...txState, tx_hash: res.tx_hash });
+      transactions.value = addTx({ ...txState, tx_hash: res.data.tx_hash });
     })
     .catch((error) => {
       console.log(error);
