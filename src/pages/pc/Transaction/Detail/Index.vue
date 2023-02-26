@@ -5,7 +5,7 @@
       <Item title="交易哈希">{{ hash }}</Item>
       <Item title="状态">
         <a-tag v-if="transaction?.status === 1" color="#000"> 成功 </a-tag>
-        <a-tag v-else color="default"> 失败 </a-tag>
+        <a-tag v-else color="default"> 未确认 </a-tag>
       </Item>
       <Item title="区块高度">{{ transaction?.height }}</Item>
       <Item title="Nonce">
@@ -37,7 +37,9 @@
   <div v-else>
     <a-empty style="margin-top: 200px">
       <template #description>
-        <span> 未搜索到相关交易 </span>
+        <div> 未搜索到哈希为 </div>
+        <a-tag> {{ hash }} </a-tag>
+        <div> 的交易 </div>
       </template>
     </a-empty>
   </div>
@@ -55,16 +57,17 @@ const props = defineProps({
   hash: String,
 });
 
-let transaction = reactive<API.TransactionDetail>({});
+const transaction = ref<API.TransactionDetail>({});
 
 const params = reactive({
   tx_hash: props.hash || "123",
 });
 
 detail(params).then((res) => {
-  if (res && res.data) {
-    transaction = res.data.tx;
+  if (res && res.tx) {
+    transaction.value = res.tx;
     hasResult.value = true;
+    
   } else {
     console.log("查询结果为空");
   }

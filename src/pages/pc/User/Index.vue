@@ -86,9 +86,8 @@ type User = {
   PK?: string;
   address?: string;
 };
-const summary = reactive<Object>({});
-
-let transactions = reactive<API.TransactionDetail[]>(getTxList());
+const transactions = ref<API.TransactionDetail[]>(getTxList());
+const summary = ref<any>({});
 
 // 用户的离线数据
 let userData = reactive<User>({});
@@ -118,6 +117,11 @@ function initUser(user: string | User) {
     user = JSON.parse(user) as User;
   }
   userData = user;
+  summary.value = {
+    address: user.address,
+    transactionCount: transactions.value.length,
+    nonce: transactions.value.length
+  }
 }
 
 const txFormVisible = ref(false);
@@ -125,15 +129,16 @@ const txState = reactive<API.TransactionSendParams>({
   from: userData.address,
   pubkey: userData.PK,
   crypto_method: "default",
+  nonce: transactions.value.length.toString(),
 });
 
 function handleSendTX() {
   txFormVisible.value = false;
   send(txState)
     .then((res) => {
-      console.log(res.data.tx_hash);
+      // console.log(res.tx_hash);
       message.success("成功发送交易");
-      addTx({ ...txState, tx_hash: res.data.tx_hash });
+      transactions.value = addTx({ ...txState, tx_hash: res.tx_hash });
     })
     .catch((error) => {
       console.log(error);

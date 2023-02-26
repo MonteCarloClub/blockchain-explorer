@@ -40,20 +40,14 @@ export interface RequestOptions {
     errorMsg?: string;
 }
 
-// 与后端约定好自定义的 Response 结构
-export type Response<T = any> = {
-    code: number;
-    message: string;
-    data: T;
-};
 
 export const request = async<T>(
     config: AxiosRequestConfig,
     options: RequestOptions = {},
-): Promise<Response<T>> => {
+): Promise<T> => {
     try {
         // 设置这里的 request 返回的数据格式为 Response<T>
-        const res = await service.request<any, Promise<Response<T>>>(config);
+        const res = await service.request<any, Promise<T>>(config);
 
         // 弹窗提示消息
         const { successMsg, errorMsg } = options;

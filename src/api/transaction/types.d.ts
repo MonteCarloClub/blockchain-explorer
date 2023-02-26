@@ -36,7 +36,7 @@ declare namespace API {
     type TransactionSendParams = {
         to?: string;
         from?: string;
-        nonce?: number;
+        nonce?: string;
         signature?: string;
         crypto_method?: string;
         data?: string;

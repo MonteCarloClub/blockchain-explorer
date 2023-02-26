@@ -9,7 +9,7 @@ import Title from '@/components/Title.vue';
 import { getTxList } from "@/utils/storage";
 import { reactive } from "vue";
 
-let transactions = reactive<API.TransactionDetail[]>(getTxList());
+const transactions = reactive<API.TransactionDetail[]>(getTxList());
 </script>
 
 <style scoped>

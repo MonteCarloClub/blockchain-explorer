@@ -16,7 +16,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/dev': {
-        target: 'http://192.168.0.102:8888',
+        target: 'http://106.14.244.78:8888',
+        // target: 'http://192.168.0.102:8888',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/dev/, ''),
