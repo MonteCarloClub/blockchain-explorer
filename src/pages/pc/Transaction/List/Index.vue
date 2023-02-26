@@ -1,31 +1,15 @@
 <template>
-    <Title title="交易列表">
-        <a-button type="primary" @click="refresh">刷新</a-button>
-    </Title>
-    <div>
-        <TransactionTable :data="data"></TransactionTable>
-    </div>
+    <Title title="交易列表" />
+    <TransactionTable :data="transactions"></TransactionTable>
 </template>
 
 <script lang="ts" setup>
 import TransactionTable from '@/components/tables/TransactionTable.vue';
 import Title from '@/components/Title.vue';
-import { useTransactionList } from "@/composition/useMock";
-import { debounce } from "@/utils/debounce";
+import { getTxList } from "@/utils/storage";
 import { reactive } from "vue";
 
-const params = reactive({
-    q: 'time(2022-05-17 15:49:30..2022-05-18 15:49:30)',
-    s: 'internal_value_usd(desc)',
-    limit: 10,
-    offset: 0
-})
-
-const { data, error } = useTransactionList(params)
-
-const refresh = debounce(() => {
-    params.offset += params.limit
-}, 500)
+let transactions = reactive<API.TransactionDetail[]>(getTxList());
 </script>
 
 <style scoped>

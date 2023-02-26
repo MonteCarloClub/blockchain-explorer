@@ -9,7 +9,7 @@
         <router-link to="/blocks">
             <div> 区块 </div>
         </router-link>
-        <router-link to="/user/0x77777778c7577dc7629e48dd0590cc48be0314b4">
+        <router-link to="/user">
             <div> 我的 </div>
         </router-link>
     </div>

@@ -5,11 +5,10 @@
 
 export const columns = [
     { title: '交易哈希', dataIndex: 'hash', ellipsis: true },
-    { title: '区块', dataIndex: 'block_id', width: 100 },
-    { title: '交易日期', dataIndex: 'time', width: 180 },
-    { title: '付款方', dataIndex: 'sender', ellipsis: true },
+    { title: '区块高度', dataIndex: 'block_id', width: 100 },
+    { title: '状态', dataIndex: 'status', width: 90 },
+    { title: '发送方', dataIndex: 'sender', ellipsis: true },
     { title: ' ', dataIndex: 'to_icon', width: 30 },
-    { title: '收款方', dataIndex: 'recipient', ellipsis: true },
-    { title: '输入大小 / KB', dataIndex: 'input_size', width: 120, align: 'center' },
-    { title: 'Gas 消耗', dataIndex: 'gas_used', width: 100, align: 'right' },
+    { title: '接收方', dataIndex: 'recipient', ellipsis: true },
+    { title: '加密方式', dataIndex: 'crypto_method', width: 120, align: 'center' },
 ];

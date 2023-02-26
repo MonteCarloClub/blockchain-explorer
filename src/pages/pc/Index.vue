@@ -10,14 +10,14 @@
             <div :class="{ body: $route.path !== '/' }" class="global-pc-container">
                 <router-view></router-view>
             </div>
-            <Footer></Footer>
+            <!-- <Footer></Footer> -->
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import Header from "@/components/header/Header.vue";
-import Footer from "@/components/Footer.vue";
+// import Footer from "@/components/Footer.vue";
 </script>
 
 <style scoped>

@@ -27,7 +27,7 @@ export const routes = [
         props: true
     },
     {
-        path: '/user/:address',
+        path: '/user',
         component: () => import("@/pages/pc/User/Index.vue"),
         props: true
     },

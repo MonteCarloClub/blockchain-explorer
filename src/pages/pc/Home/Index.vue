@@ -2,11 +2,12 @@
 import Search from "./search/Index.vue";
 import Header from "./header/Index.vue";
 import Background from "./background/Index.vue";
-import { KCHAIN, KCHAIN_INTRO, KCHAIN_TITLE } from "@/common/constants";
+import { KCHAIN, KCHAIN_INTRO, KCHAIN_TITLE, SEARCH_PLACE_HOLDER } from "@/common/constants";
 
 const en = KCHAIN;
 const title = KCHAIN_TITLE;
 const intro = KCHAIN_INTRO;
+const placeholder = SEARCH_PLACE_HOLDER;
 </script>
 
 <template>
@@ -19,7 +20,7 @@ const intro = KCHAIN_INTRO;
             <h1>{{ en }}</h1>
             <h2>{{ title }}</h2>
             <div class="desc"> {{ intro }} </div>
-            <Search placeholder="搜索 Address / Tx hash / Block"></Search>
+            <Search :placeholder="placeholder"></Search>
         </div>
     </div>
 </template>
@@ -46,7 +47,7 @@ h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     pointer-events: none;
 }
 </style>

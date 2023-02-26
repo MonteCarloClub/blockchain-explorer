@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-import { decode, encode } from 'querystring'
 
 /** https://vitejs.dev/config/ */
 export default defineConfig({
@@ -12,15 +11,15 @@ export default defineConfig({
     },
   },
   // 打包后的根路径
-  base: "/be/",
+  base: "/",
   // 开发时的代理
   server: {
     proxy: {
-      '/api/transactions': {
-        target: 'https://api.blockchair.com',
+      '/dev': {
+        target: 'http://192.168.0.102:8888',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, 'ethereum'),
+        rewrite: (path) => path.replace(/^\/dev/, ''),
       },
     }
   },
@@ -29,7 +28,8 @@ export default defineConfig({
       less: {
         modifyVars: {
           'primary-color': '#000000',
-          'link-color': '#0057a8'
+          'link-color': '#0057a8',
+          'select-item-selected-bg': '#AAAAAA'
         },
         javascriptEnabled: true,
       },

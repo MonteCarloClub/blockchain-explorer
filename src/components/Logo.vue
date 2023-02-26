@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/login">
+    <router-link to="/">
         <div class="logo">Logo</div>
     </router-link>
 </template>

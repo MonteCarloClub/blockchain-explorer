@@ -60,9 +60,9 @@ let eggShow = ref(false)
 const picked = Math.round(Math.random() * gridsNum.value)
 
 function layerClicked(index:number) {
-    if (index === picked) {
-        eggShow.value = true;
-    }
+    // if (index === picked) {
+    //     eggShow.value = true;
+    // }
 }
 
 const gridsStyle = computed(() => {

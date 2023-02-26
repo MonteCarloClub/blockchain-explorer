@@ -23,7 +23,22 @@ import { request } from '@/utils/request';
 export function detail(data: API.TransactionDetailParams) {
     return request<API.TransactionDetailResponse>(
         {
-            url: '/transaction/detail',
+            url: '/query',
+            method: 'post',
+            data
+        }
+    );
+}
+
+/**
+ * 发送交易
+ * @param data 请求参数
+ * @returns 交易哈希
+ */
+export function send(data: API.TransactionSendParams) {
+    return request<API.TransactionSendResponse>(
+        {
+            url: '/depository',
             method: 'post',
             data,
         }

@@ -1,57 +1,84 @@
 <template>
+  <div v-if="hasResult">
     <Title title="交易详情"></Title>
     <div class="info">
-        <Item title="哈希">{{ hash }}</Item>
-        <Item title="状态">
-            <a-tag v-if="data?.status === 'success'" color="#000"> 成功 </a-tag>
-            <a-tag v-else color="default"> 失败 </a-tag>
-        </Item>
-        <Item title="区块 id">{{ data?.block_id }}</Item>
-        <Item title="时间">{{ data?.time }}</Item>
-        <Item title="发送者">
-            <router-link :to="'/address/' + data?.sender">{{ data?.sender }}</router-link>
-        </Item>
-        <Item title="接收方">
-            <router-link :to="'/address/' + data?.recipient">{{ data?.recipient }}</router-link>
-        </Item>
-        <Item title="签名">
-            <div>r : <a-tag> {{data?.r}} </a-tag></div>
-            <div style="margin: 6px 0;">s : <a-tag> {{data?.s}} </a-tag></div>
-            <div>v : <a-tag> {{data?.v}} </a-tag></div>
-        </Item>
-        <Item title="金额">{{ data?.value_usd }} (USD)</Item>
-        <Item title="手续费">{{ data?.fee_usd }} (USD)</Item>
-        <Item title="Gas 消耗">{{ data?.gas_used }} (Gas)</Item>
-        <Item title="Gas 价格">{{ data?.gas_price }}</Item>
-        <Item title="Gas 上限">{{ data?.gas_limit }}</Item>
-        <Item title="Input Data">
-            <div style="border-left: lightgray 2px solid; padding-left: 6px; color: gray;">
-                {{ data?.input_hex }}
-            </div> 
-        </Item>
+      <Item title="交易哈希">{{ hash }}</Item>
+      <Item title="状态">
+        <a-tag v-if="transaction?.status === 1" color="#000"> 成功 </a-tag>
+        <a-tag v-else color="default"> 失败 </a-tag>
+      </Item>
+      <Item title="区块高度">{{ transaction?.height }}</Item>
+      <Item title="Nonce">
+        <div>{{ transaction?.nonce }}</div>
+      </Item>
+      <Item title="发送者">
+        <router-link :to="'/address/' + transaction?.from">{{
+          transaction?.from
+        }}</router-link>
+      </Item>
+      <Item title="接收方">
+        <router-link :to="'/address/' + transaction?.to">{{
+          transaction?.to
+        }}</router-link>
+      </Item>
+      <Item title="签名">
+        <!-- <div>r : <a-tag> {{transaction?.r}} </a-tag></div>
+            <div style="margin: 6px 0;">s : <a-tag> {{transaction?.s}} </a-tag></div>
+            <div>v : <a-tag> {{transaction?.v}} </a-tag></div> -->
+        <a-tag> {{ transaction?.signature }} </a-tag>
+      </Item>
+      <Item title="存证">
+        <div class="text-area">
+          {{ transaction?.data }}
+        </div>
+      </Item>
     </div>
+  </div>
+  <div v-else>
+    <a-empty style="margin-top: 200px">
+      <template #description>
+        <span> 未搜索到相关交易 </span>
+      </template>
+    </a-empty>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useTransactionDetail } from "@/composition/useMock";
-import { reactive } from "vue";
-import Title from '@/components/Title.vue';
-import Item from "@/components/Item.vue"
+import { detail } from "@/api/transaction";
+import { ref, reactive } from "vue";
+import Title from "@/components/Title.vue";
+import Item from "@/components/Item.vue";
+
+const hasResult = ref(false);
 
 const props = defineProps({
-    hash: String
-})
+  hash: String,
+});
 
-// TODO: hash may be null
+let transaction = reactive<API.TransactionDetail>({});
+
 const params = reactive({
-    id: props.hash || '123'
-})
+  tx_hash: props.hash || "123",
+});
 
-const { data, error } = useTransactionDetail(params)
+detail(params).then((res) => {
+  if (res && res.data) {
+    transaction = res.data.tx;
+    hasResult.value = true;
+  } else {
+    console.log("查询结果为空");
+  }
+});
 </script>
 
 <style scoped>
 .info {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
+}
+
+.text-area {
+  border-left: lightgray 2px solid;
+  padding-left: 6px;
+  color: gray;
 }
 </style>

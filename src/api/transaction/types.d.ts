@@ -17,13 +17,34 @@ declare namespace API {
 
     /** 交易详细信息参数 */
     type TransactionDetailParams = {
-        id: string;
+        tx_hash: string;
     };
 
     /** 交易详细信息 */
+    type TransactionDetail = {
+        tx_hash?: string;
+        height?: number;
+        status?: number;
+    } & TransactionSendParams;
+
+    /** 交易详细信息接口的返回值 */
     type TransactionDetailResponse = {
-        id: string;
-        from: string;
-        to: string;
+        tx: TransactionDetail
+    };
+
+    /** 发送交易的参数 */
+    type TransactionSendParams = {
+        to?: string;
+        from?: string;
+        nonce?: number;
+        signature?: string;
+        crypto_method?: string;
+        data?: string;
+        pubkey?: string;
+    };
+
+    /** 发送交易的返回值 */
+    type TransactionSendResponse = {
+        tx_hash: string;
     };
 }
