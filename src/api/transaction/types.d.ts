@@ -24,7 +24,7 @@ declare namespace API {
     type TransactionDetail = {
         tx_hash?: string;
         height?: number;
-        status?: number;
+        status?: string;
     } & TransactionSendParams;
 
     /** 交易详细信息接口的返回值 */

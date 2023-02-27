@@ -4,7 +4,7 @@
     <div class="info">
       <Item title="交易哈希">{{ hash }}</Item>
       <Item title="状态">
-        <a-tag v-if="transaction?.status === 1" color="#000"> 成功 </a-tag>
+        <a-tag v-if="transaction?.status === '1'" color="#000"> 已确认 </a-tag>
         <a-tag v-else color="default"> 未确认 </a-tag>
       </Item>
       <Item title="区块高度">{{ transaction?.height }}</Item>

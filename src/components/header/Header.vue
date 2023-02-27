@@ -53,7 +53,7 @@ const placeholder = SEARCH_PLACE_HOLDER;
 
 .group {
   line-height: 48px;
-  max-width: 360px;
+  max-width: 500px;
   position: relative;
 }
 
