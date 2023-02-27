@@ -42,9 +42,15 @@
         <a-select
           v-model:value="txState.crypto_method"
           placeholder="请选择加密算法"
+          @select="cryptoMethodSelected"
         >
-          <a-select-option value="default">default</a-select-option>
-          <a-select-option value="sm">sm</a-select-option>
+          <a-select-option
+            v-for="method in Object.keys(cryptoMethodsMap)"
+            :key="method"
+            :value="method"
+          >
+            {{ method }}
+          </a-select-option>
         </a-select>
       </a-form-item>
 
@@ -71,13 +77,25 @@
 import Title from "@/components/Title.vue";
 import AddressDesc from "./AddressDesc.vue";
 import TransactionTable from "@/components/tables/TransactionTable.vue";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { message } from "ant-design-vue";
 import { maps } from "@/models/address";
 import { send } from "@/api/transaction";
+import { smKeyPairs } from "@/api/user";
 import { random256, drivePub, keccak256Hash } from "@/utils/crypto";
 import { USER_ACCOUNT } from "@/common/constants";
 import { getTxList, addTx } from "@/utils/storage";
+import { parallelWithLimit } from "@/utils/promises";
+import { detail } from "@/api/transaction";
+
+const transactions = ref<API.TransactionDetail[]>(getTxList());
+/**获取交易最新的状态 */
+const tasks = transactions.value.map((tx, index) =>
+  detail({ tx_hash: tx.tx_hash || "" })
+);
+parallelWithLimit(tasks, 3, (index, res) => {
+  transactions.value[index] = res.data.tx;
+});
 
 const hasUser = ref(false);
 
@@ -86,11 +104,10 @@ type User = {
   PK?: string;
   address?: string;
 };
-const transactions = ref<API.TransactionDetail[]>(getTxList());
-const summary = ref<any>({});
 
 // 用户的离线数据
-let userData = reactive<User>({});
+let userData = ref<User>({});
+const summary = ref<any>({});
 
 function createAccount() {
   const sk = random256();
@@ -107,38 +124,51 @@ function createAccount() {
 }
 
 const s = localStorage.getItem(USER_ACCOUNT);
-if (s) {
-  hasUser.value = true;
-  initUser(s);
-}
+s && initUser(s);
 
 function initUser(user: string | User) {
   if (typeof user === "string") {
     user = JSON.parse(user) as User;
   }
-  userData = user;
+  hasUser.value = true;
+  userData.value = user;
   summary.value = {
     address: user.address,
-    transactionCount: transactions.value.length,
-    nonce: transactions.value.length
-  }
+    nonce: computed(() => transactions.value.length),
+  };
 }
 
 const txFormVisible = ref(false);
 const txState = reactive<API.TransactionSendParams>({
-  from: userData.address,
-  pubkey: userData.PK,
-  crypto_method: "default",
-  nonce: transactions.value.length.toString(),
+  from: userData.value.address,
+});
+
+const cryptoMethodsMap = reactive<{ [key: string]: string | undefined }>({
+  default: userData.value.PK,
+});
+function cryptoMethodSelected(method: keyof typeof cryptoMethodsMap) {
+  txState.crypto_method = method.toString();
+  txState.pubkey = cryptoMethodsMap[method];
+}
+cryptoMethodSelected("default");
+
+/**尝试获取 sm 公私钥对 */
+smKeyPairs().then((res) => {
+  const { priv, pub } = res.data;
+  cryptoMethodsMap.sm = pub;
 });
 
 function handleSendTX() {
   txFormVisible.value = false;
-  send(txState)
+  send({
+    ...txState,
+    nonce: transactions.value.length.toString(),
+  })
     .then((res) => {
-      // console.log(res.tx_hash);
       message.success("成功发送交易");
-      transactions.value = addTx({ ...txState, tx_hash: res.data.tx_hash });
+      const tempTx = { ...txState, tx_hash: res.data.tx_hash };
+      addTx(tempTx);
+      transactions.value.unshift(tempTx);
     })
     .catch((error) => {
       console.log(error);

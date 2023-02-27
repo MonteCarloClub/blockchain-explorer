@@ -1,6 +1,6 @@
 import { keccak256 } from "js-sha3";
-import * as CryptoJS from "crypto-js";
-import * as Secp256k1 from "@noble/secp256k1";
+import { HmacSHA256 } from "crypto-js";
+import { Point } from "@noble/secp256k1";
 
 /**
  * 随机生成 256 bits
@@ -8,7 +8,7 @@ import * as Secp256k1 from "@noble/secp256k1";
  */
 export function random256() {
   const randomSeed = Math.random().toString();
-  return CryptoJS.HmacSHA256(randomSeed, "blockchain").toString();
+  return HmacSHA256(randomSeed, "blockchain").toString();
 }
 
 /**
@@ -17,11 +17,11 @@ export function random256() {
  * @returns \{PK, x, y}
  */
 export function drivePub(prikey: string) {
-    const pkPoint = Secp256k1.Point.fromPrivateKey(prikey);
-    const x = pkPoint.x.toString(16).padStart(64, "0");
-    const y = pkPoint.y.toString(16).padStart(64, "0");
-    const PK = "04" + x + y;
-    return {x, y, PK}
+  const pkPoint = Point.fromPrivateKey(prikey);
+  const x = pkPoint.x.toString(16).padStart(64, "0");
+  const y = pkPoint.y.toString(16).padStart(64, "0");
+  const PK = "04" + x + y;
+  return { x, y, PK };
 }
 
 /**

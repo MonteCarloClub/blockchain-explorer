@@ -4,7 +4,6 @@
 export const maps = [
     // { label: '余额', key: 'balance' },
     { label: '地址', key: 'address' },
-    { label: '交易数', key: 'transactionCount' },
     { label: 'Nonce', key: 'nonce' },
     // { label: '总支出', key: 'totalSent' },
     // { label: '总收入', key: 'totalReceived' },
