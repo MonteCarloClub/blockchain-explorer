@@ -90,7 +90,7 @@ import { detail } from "@/api/transaction";
 
 const transactions = ref<API.TransactionDetail[]>(getTxList());
 /**获取交易最新的状态 */
-const tasks = transactions.value.map((tx, index) =>
+const tasks = transactions.value.map((tx) =>
   detail({ tx_hash: tx.tx_hash || "" })
 );
 parallelWithLimit(tasks, 3, (index, res) => {

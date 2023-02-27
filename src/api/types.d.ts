@@ -28,4 +28,11 @@ declare namespace API {
         /** 业务上的请求是否成功 */
         success?: boolean;
     };
+
+    /** 与后端约定好自定义的 Response 结构 */
+    type Response<T = any> = {
+        code: number;
+        message: string;
+        data: T;
+    };
 }

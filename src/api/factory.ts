@@ -5,7 +5,6 @@
  */
 import { ref, isReactive, watch } from 'vue'
 import type { Ref } from 'vue'
-import type { Response } from '@/utils/request'
 
 /**
  * 工厂函数，根据传入的 api 函数构造相应的组合式函数，便于组件中复用
@@ -13,7 +12,7 @@ import type { Response } from '@/utils/request'
  * @returns 组合式函数
  */
 export function useFetchFactory<T extends Object, R>
-    (fetchMethod: (params: T) => Promise<Response<R>>) {
+    (fetchMethod: (params: T) => Promise<API.Response<R>>) {
 
     const data: Ref<R | null> = ref(null);
     const error: Ref<string | null> = ref(null);

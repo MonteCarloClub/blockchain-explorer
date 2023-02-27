@@ -1,4 +1,4 @@
-import { request } from '@/utils/request';
+import { request } from '@/api/request';
 
 /**
  * 获取最近的区块列表
