@@ -1,13 +1,13 @@
 <template>
   <div v-if="hasUser">
     <Title title="我的信息" />
-    <AddressDesc :data="summary" :maps="maps"></AddressDesc>
+    <AddressDesc :data="summary" :maps="maps" />
     <a-divider />
     <div style="display: flex; align-items: center; margin-bottom: 12px">
       <h2 style="flex: 1">交易列表</h2>
       <a-button type="primary" @click="txFormVisible = true">发起交易</a-button>
     </div>
-    <TransactionTable :data="transactions"></TransactionTable>
+    <TransactionTable :data="transactions" />
   </div>
   <div v-else>
     <a-empty style="margin-top: 100px">
@@ -80,13 +80,12 @@ import TransactionTable from "@/components/tables/TransactionTable.vue";
 import { computed, reactive, ref } from "vue";
 import { message } from "ant-design-vue";
 import { maps } from "@/models/address";
-import { send } from "@/api/transaction";
+import { send, detail } from "@/api/transaction";
 import { smKeyPairs } from "@/api/user";
 import { random256, drivePub, keccak256Hash } from "@/utils/crypto";
 import { USER_ACCOUNT } from "@/common/constants";
 import { getTxList, addTx } from "@/utils/storage";
 import { parallelWithLimit } from "@/utils/promises";
-import { detail } from "@/api/transaction";
 
 const transactions = ref<API.TransactionDetail[]>(getTxList());
 /**获取交易最新的状态 */

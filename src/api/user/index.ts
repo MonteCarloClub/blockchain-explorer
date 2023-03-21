@@ -1,13 +1,14 @@
 import { request } from '@/api/request';
 
 /**
- * 获取交易的详细信息
+ * 获取 sm 密钥对
  * @param data 请求参数
- * @returns 交易详细信息
+ * @returns SM 密钥对
  */
 export function smKeyPairs() {
     return request<API.UserSMKeyPairsResponse>(
         {
+            baseURL: '/sm/',
             url: '/keygen',
             method: 'post'
         }

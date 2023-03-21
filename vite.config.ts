@@ -16,12 +16,16 @@ export default defineConfig({
   server: {
     proxy: {
       '/dev': {
-        // target: 'http://192.168.0.112:8080', // zyx's local net
-        // target: 'http://192.168.0.102:8888', // zzp's local net
         target: 'http://106.14.244.78:8888', // zzp's public server
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/dev/, ''),
+      },
+      '/sm': {
+        target: 'http://106.14.244.78:8080', // zzp's public server
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/sm/, ''),
       },
     }
   },
