@@ -14,7 +14,8 @@
       </template>
       <template v-if="column.dataIndex === 'status'">
         <a-tag v-if="text === '1'" color="#000"> 成功 </a-tag>
-        <a-tag v-else color="default"> 未确认 </a-tag>
+        <a-tag v-if="text === '-1'" color="#F00"> 失败 </a-tag>
+        <a-tag v-if="text != '1' && text != '-1'" color="default"> 未确认 </a-tag>
       </template>
       <template v-if="column.dataIndex === 'to_icon'">
         <a-space>

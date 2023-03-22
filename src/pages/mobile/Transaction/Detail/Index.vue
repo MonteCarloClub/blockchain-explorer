@@ -3,7 +3,7 @@
     <a-list class="container">
         <ALItem title="交易哈希">{{ hash }}</ALItem>
         <ALItem title="状态">
-            <a-tag v-if="transaction?.status === 1" color="#000">
+            <a-tag v-if="transaction?.status === '1'" color="#000">
                 <template #icon>
                     <close-circle-outlined />
                 </template>

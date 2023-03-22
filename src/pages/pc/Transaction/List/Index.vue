@@ -7,9 +7,18 @@
 import TransactionTable from '@/components/tables/TransactionTable.vue';
 import Title from '@/components/Title.vue';
 import { getTxList } from "@/utils/storage";
-import { reactive } from "vue";
+import { ref } from "vue";
+import { detail } from "@/api/transaction";
+import { parallelWithLimit } from "@/utils/promises";
 
-const transactions = reactive<API.TransactionDetail[]>(getTxList());
+const transactions = ref<API.TransactionDetail[]>(getTxList());
+/**获取交易最新的状态 */
+const tasks = transactions.value.map((tx) =>
+  detail({ tx_hash: tx.tx_hash || "" })
+);
+parallelWithLimit(tasks, 3, (index, res) => {
+  transactions.value[index] = res.data.tx;
+});
 </script>
 
 <style scoped>

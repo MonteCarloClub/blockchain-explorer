@@ -144,21 +144,27 @@ const txState = reactive<API.TransactionSendParams>({
 
 const cryptoMethodsMap = reactive<{ [key: string]: string | undefined }>({
   default: userData.value.PK,
+  sm: 'b0isi6VZIWds4zOaItR0cqXtczn7pfyEe27W+iMTFrNvQWIuYyY1JIIhlF/wyLu+jO1W9n5bDPmBWDhvpz/aMA=='
 });
 function cryptoMethodSelected(method: keyof typeof cryptoMethodsMap) {
   txState.crypto_method = method.toString();
   txState.pubkey = cryptoMethodsMap[method];
 }
-cryptoMethodSelected("default");
+cryptoMethodSelected("sm");
 
 /**尝试获取 sm 公私钥对 */
 smKeyPairs().then((res) => {
   const { priv, pub } = res.data;
-  cryptoMethodsMap.sm = pub;
+  // cryptoMethodsMap.sm = pub;
 });
 
 function handleSendTX() {
   txFormVisible.value = false;
+  console.log({
+    ...txState,
+    nonce: transactions.value.length.toString(),
+  });
+  
   send({
     ...txState,
     nonce: transactions.value.length.toString(),
