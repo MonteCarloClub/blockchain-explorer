@@ -21,8 +21,9 @@ initRoutes(isPC)
 }
 
 .global-pc-container {
-    max-width: 1660px;
-    margin: auto;
-    position: relative;
+  overflow: hidden;
+  max-width: 1660px;
+  margin: auto;
+  position: relative;
 }
 </style>
