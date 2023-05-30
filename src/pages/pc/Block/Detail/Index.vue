@@ -19,13 +19,13 @@
         <Item title="Gas 上限">{{ data?.header.gasLimit }}</Item>
         <Item title="Gas 消耗">{{ data?.header.gasUsed }}</Item>
     </div>
-    <a-divider />
+    <!-- <a-divider />
     <h2>交易列表</h2>
     <a-timeline>
         <a-timeline-item v-for="(tx, i) in data?.transactions">
             <TxsTimelineItem :tx="tx"></TxsTimelineItem>
         </a-timeline-item>
-    </a-timeline>
+    </a-timeline> -->
 </template>
 
 <script setup lang="ts">

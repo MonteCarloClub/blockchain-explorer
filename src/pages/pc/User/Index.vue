@@ -160,11 +160,6 @@ smKeyPairs().then((res) => {
 
 function handleSendTX() {
   txFormVisible.value = false;
-  console.log({
-    ...txState,
-    nonce: transactions.value.length.toString(),
-  });
-  
   send({
     ...txState,
     nonce: transactions.value.length.toString(),
